@@ -1,0 +1,4 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <system systemId="http://adf10-desa01.tarjetanevada.com.ar:7780/orabpel/default/AutorizarCompra/1.4?wsdl#%7Bhttp%3A%2F%2Fxmlns.oracle.com%2FAutorizarCompra%7DAutorizarCompra"
+          uri="http://adf10-desa01.tarjetanevada.com.ar:7780/orabpel/default/AutorizarCompra/1.4?wsdl"/>
+</catalog>
