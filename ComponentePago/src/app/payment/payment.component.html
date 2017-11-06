@@ -1,0 +1,140 @@
+<form [formGroup]="form" novalidate (ngSubmit)="confirmar(form.value, form.valid)">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <span class="card-title"></span>
+                    </div>
+                    <div class="card-stacked z-depth-5">
+                        <div class="col s12 m12 l12 cabecera z-depth-1">
+                            <span class="nevada flow-text">Nevada</span>
+                            <!--img src="assets/img/logo.png" height="50px" width="200px"-->
+                            <div id="cabecera-4" class="circle z-depth-5">
+                                <div id="cabecera-3" class="circle z-depth-5"></div>
+                            </div>
+
+                        </div>
+                        <div class="card-content">                            
+                            <div *ngIf="submitted && json.codigoError === 0" class="ok center">
+                                <i class="material-icons pulse" style="font-size: 7rem">check_circle</i>
+                                <p class="center">{{json.observacion}}</p>
+                            </div>
+                            <div *ngIf="submitted && json.codigoError === 2" class="err center">
+                                <i class="material-icons" style="font-size: 7rem">error</i>
+                                <p class="center">{{json.observacion}}</p>
+                            </div>
+                            <div class="col s12 m12 l9">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="nombre" (keyup)="onKeyNombre($event)" required="true" formControlName="nombre" type="text" class="validate" style="font-size: x-large;text-transform: uppercase;">
+                                    <label for="nombre">Nombre del titular</label>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l3">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">portrait</i>
+                                    <input id="dni" type="text" class="validate" (keyup)="onKeyDni($event)" formControlName="dni" [textMask]="{mask: dniMask}"
+                                        style="font-size: x-large;">
+                                    <label for="dni" class="ll">Numero de documento</label>
+                                    <label for="dni" class="ls lm">Documento</label>
+                                </div>
+                            </div>
+                            <div class="col l9 m12 s12">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">payment</i>
+                                    <input id="ocr" (keyup)="onKeyOcr($event)" formControlName="ocr" [textMask]="{mask: ocrMask}" type="text" class="validate"
+                                        style="font-size: x-large;">
+                                    <label for="ocr">Numero de la tarjeta</label>
+                                </div>
+                            </div>
+                            <div class="col l3 m6 s6">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">more</i>
+                                    <input id="cvc" formControlName="cvc" type="password" class="validate" maxlength="3" pattern="\d*" (keyup)="onKeyCvc($event)"
+                                        style="font-size: x-large;">
+                                    <label for="cvc">CVC</label>
+                                </div>
+                            </div>
+                            <div class="col l4 m6 s6">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input id="date" formControlName="expiracion" type="text" [textMask]="{mask: expiracionMask}" (keyup)="onKeyExpiracion($event)"
+                                        class="validate" style="font-size: x-large;">
+                                    <label for="date" class="ll">Vigencia Hasta MM/AA</label>
+                                    <label for="date" class="ls">MM/AA</label>
+                                </div>
+                            </div>
+                            <div class="col s12 right-align" *ngIf="submitted && json.codigoError !== 0  && json.codigoError !== 2">
+                                <div [ngClass]="json.codigoError == 2 ? 'chip z-depth-1 red darken-4':'chip z-depth-1 amber accent-2'">
+                                    <span [ngClass]="json.codigoError == 2 ? 'white-text bold':'bold'">{{json.observacion}}</span>
+                                </div>
+                            </div>
+                            <!--div class="col s12 right-align" *ngIf="submitted && json.codigoError === 0">
+                                <div class="chip z-depth-1">
+                                    <span class="blue-text text-darken-2">{{json.observacion}}</span>
+                                </div>
+                            </div-->
+                            <div *ngIf="busy" class="col s12 right-align">
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!fin" class="card-action" style="padding:1pc 1pc 0 1pc;">
+                            <div class="row">
+                                <div class="col s3 m3 l3">
+                                    <span id="monto" style="font-size: x-large;">Monto ${{monto}}</span>
+                                    <span *ngIf="plan != 0" style="color: #0d47a1;font-size: x-large;">en {{plan}} {{plan==1?'cuota':'cuotas'}}</span>
+                                </div>
+                                <div class="col s9 m9 l9">
+                                    <div *ngIf="!valido">
+                                        <a class="btn disabled ll" style="float: right">Complete todos los datos</a>
+                                        <a class="btn disabled ls lm" style="float: right">Completar</a>
+                                    </div>
+                                    <div *ngIf="valido">
+                                        <a class="waves-effect waves-light btn grey darken-2" style="float: right" (click)="showPlanes()">Opciones de pago</a>
+                                        <input *ngIf="plan != 0" type="submit" style="float: right;margin-right: 0.1em" class="waves-effect waves-light btn" value="Confirmar Pago" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <table class="highlight centered">
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Primera Cuota</th>
+                        <th>Resto</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor=" let planes of planes" (click)="onClickPlan(planes.plan,$event)" id="{{planes.plan}}">
+                        <td>{{planes.plan}}</td>
+                        <td>${{planes.cuota1}}</td>
+                        <td>${{planes.resto}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="problem center"></div>

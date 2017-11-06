@@ -1,0 +1,167 @@
+.card-action {
+    background-color: #e0e0e0;
+}
+
+.btn, .btn-large {
+    background-color: #0d47a1;
+}
+
+#monto {
+    color: #0d47a1;
+}
+
+.cabecera {
+    height: 60px;
+    overflow: hidden;
+    background-image: url('/assets/img/a.png');
+    background-repeat: repeat;
+    background-attachment: local;
+    background-position: center;
+    background-size: contain;
+}
+
+.circle {
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#cabecera-3 {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 1%;
+    background-image: url('/assets/img/b.png');
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+@media (min-width: 1200px) {
+    #cabecera-4 {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        left: 85%;
+        top: 15%;
+        background-image: url('/assets/img/c.png');
+        background-repeat: repeat;
+        background-size: contain;
+    }
+    .ll {
+        display: block;
+    }
+    .lm, .ls {
+        display: none;
+    }
+}
+
+@media (min-width: 1100px) and (max-width: 1100px) {}
+
+@media (min-width: 501px) and (max-width: 900px) {
+    #cabecera-4 {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        left: 83%;
+        top: 15%;
+        background-image: url('/assets/img/c.png');
+        background-repeat: repeat;
+        background-size: contain;
+    }
+    .ll, .ls {
+        display: none;
+    }
+    .lm {
+        display: block;
+    }
+}
+
+@media (max-width: 500px) {
+    #cabecera-4 {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        left: 65%;
+        top: 15%;
+        background-image: url('/assets/img/c.png');
+        background-repeat: repeat;
+        background-size: contain;
+    }
+    .ls {
+        display: block;
+    }
+    .lm, .ll {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+    #cabecera-4 {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        left: 83%;
+        top: 15%;
+        background-image: url('/assets/img/c.png');
+        background-repeat: repeat;
+        background-size: contain;
+    }
+    .ll {
+        display: block;
+    }
+    .lm, .ls {
+        display: none;
+    }
+}
+
+@font-face {
+    font-family: fontnevada;
+    src: url('/assets/fonts/Targa.woff');
+}
+
+.nevada {
+    font-family: 'fontnevada';
+    font-size: xx-large;
+    position: absolute;
+    color: #f1f1f1;
+    letter-spacing: 3px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.ok {
+    color: #0d47a1;
+    z-index: 9999999;
+    position: relative;
+    display: none;
+    opacity: 0.8;
+}
+
+.err {
+    color: #b71c1c;
+    z-index: 9999999;
+    position: relative;
+    display: none;
+    opacity: 0.8;
+}
+
+td, th {
+    padding: 0px;
+    width: 20%;
+}
+
+.modal {
+    width: 30%;
+}
+
+.td-selection {
+    border-style: solid;
+    border-color: #0d47a1;
+}
+
+.problem {
+    background-image: url('/assets/img/problem.jpg');
+    position: absolute;
+    display: none;    
+    background-size: cover;
+    z-index: 99999999999 !important;
+}
