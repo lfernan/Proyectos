@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="segmentacion-popup">
+    <display-name>Segmentar</display-name>
+    <default-activity>router</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <input-parameter-definition id="__6">
+      <name>accion</name>
+      <value>#{pageFlowScope.accion}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <view id="gestionarSegmentacion">
+      <page>/segmentacion/gestionarSegmentacion.jspx</page>
+    </view>
+    <view id="consultarSegmentacion">
+      <page>/segmentacion/consultarSegmentacion.jspx</page>
+    </view>
+    <router id="router">
+      <case id="__4">
+        <expression>#{pageFlowScope.accion eq 'segmentar'}</expression>
+        <outcome>segmentar</outcome>
+      </case>
+      <case id="__5">
+        <expression>#{pageFlowScope.accion eq 'consultar'}</expression>
+        <outcome>consultar</outcome>
+      </case>
+      <default-outcome>consultar</default-outcome>
+    </router>
+    <task-flow-return id="returnSegmentar">
+      <outcome>
+        <name>returnSegmentar</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__1">
+      <from-activity-id>router</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>segmentar</from-outcome>
+        <to-activity-id>gestionarSegmentacion</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__3">
+        <from-outcome>consultar</from-outcome>
+        <to-activity-id>consultarSegmentacion</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>gestionarSegmentacion</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>returnSegmentar</from-outcome>
+        <to-activity-id>returnSegmentar</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>consultarSegmentacion</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>returnSegmentar</from-outcome>
+        <to-activity-id>returnSegmentar</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

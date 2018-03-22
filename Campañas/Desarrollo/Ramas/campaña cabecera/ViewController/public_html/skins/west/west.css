@@ -1,0 +1,192 @@
+@charset "UTF-8";
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+/*INFO: Color value exceeded range after adjustment: HSL(0, -29%, 78%)*/
+.AFButtonBorderBottomColor:alias {
+    color: #C9C9C9; 
+}
+
+.AFButtonBorderActiveColor:alias {
+    color: #1773C1; 
+}
+
+.AFButtonBorderDisabledColor:alias {
+    color: #D5D5D5; 
+}
+
+/*INFO: Color value exceeded range after adjustment: HSL(0, -53%, 81%)*/
+.AFButtonBorderBottomHoverColor:alias {
+    color: #D1D1D1; 
+}
+
+.AFButtonGradientStartColor:alias {
+    color: #F7F7F7; 
+}
+
+.AFButtonBorderColor:alias {
+    color: #c4ced7; 
+}
+
+.AFButtonForeground:alias {
+    font-weight: bold; 
+}
+
+.AFButtonGradientEndColor:alias {
+    color: #E4E8EA; 
+}
+
+.AFButtonBorder:alias {
+    border-radius: 5px; 
+    }
+
+.AFButtonGradientStartHoverColor:alias {
+    color: #F7F7F7; 
+}
+
+.AFButtonGradientEndHoverColor:alias {
+    color: White; 
+}
+
+.AFButtonBorderHoverColor:alias {
+    color: #c4ced7; 
+}
+
+.AFButtonForegroundHover:alias {
+    color: #0572ce; 
+    font-weight: bold; 
+}
+
+.AFButtonGradientStartActiveColor:alias {
+    color: #0572ce; 
+}
+
+.AFButtonBorderTopActiveColor:alias {
+    color: #2688DB; 
+}
+
+.AFButtonGradientEndActiveColor:alias {
+    color: #0572ce; 
+}
+
+.AFButtonForegroundDepressed:alias {
+    color: White; 
+    font-weight: bold; 
+}
+
+.AFDefaultFont:alias {
+    font-size: 13px; 
+}
+
+af|panelHeader::title-text0, af|showDetailHeader::title-text0, af|query::title-text0 {
+    color: #636363; 
+}
+
+af|selectOneChoice::content {
+    height: 30px; 
+    font-size: 15px; 
+}
+
+af|selectOneChoice::label {
+    font-size: 14px; 
+}
+
+af|inputComboboxListOfValues::container {
+    height: 25px; 
+}
+
+af|inputComboboxListOfValues::dropdown-cell {
+    margin-top: 0px; 
+    margin: 5px; 
+                }
+
+af|inputComboboxListOfValues::label {
+    font-size: 14px; 
+}
+
+af|button::link {
+    height: 23px; 
+    padding: 5px 6px 0px 6px; 
+}
+
+af|chooseDate::prev-month-arrow {
+    background-image: url("../../imagenes/next-1.png"); 
+    height: 13px; 
+    width: 10px; 
+}
+
+af|chooseDate::next-month-arrow {
+    background-image: url("../../imagenes/next-2.png"); 
+    height: 13px; 
+    width: 10px; 
+}
+
+af|inputNumberSpinbox::decrementor-icon-style {
+    background-image: url("../../imagenes/next-4.png"); 
+    font-weight: bold; 
+}
+
+af|chooseDate::week-header-cell {
+    background-color: White; 
+    font-weight: bold; 
+}
+
+af|inputNumberSpinbox::incrementor-icon-style {
+    background-image: url("../../imagenes/next-3.png"); 
+}
+
+af|chooseDate {
+    border-color: White; 
+}
+
+af|chooseDate::prev-month-arrow:hover {
+    background-image: url("../../imagenes/next-1.png"); 
+}
+
+af|chooseDate::next-month-arrow:active {
+    background-image: url("../../imagenes/next-2.png"); 
+}
+
+af|chooseDate::next-month-arrow:hover {
+    background-image: url("../../imagenes/next-2.png"); 
+}
+
+@agent (touchScreen:none) {
+
+    af|inputNumberSpinbox::incrementor-icon-style:hover {
+        background-image: url("../../imagenes/next-3.png"); 
+    }
+    
+    af|inputNumberSpinbox::decrementor-icon-style:hover {
+        background-image: url("../../imagenes/next-4.png"); 
+    }
+
+}
+
+.AFPanelBoxHeaderCoreDefault:alias {
+    color: #212121; 
+}
+
+.AFPanelBoxContentCoreDefault:alias {
+    color: #212121; 
+}
+
+af|inputText::context-content {
+    }
+
+af|inputText::content {
+    height: 1.5pc; 
+    font-size: 15px; 
+}
+
+af|inputDate::content {
+    height: 1.5pc; 
+    font-size: 15px; 
+}
+
+af|inputRangeSlider:playable::content {
+    }
+
+af|inputRangeSlider::content {
+            }

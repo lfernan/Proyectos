@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="produccionPageDef"
+                Package="graficos">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ViewProduccion" RangeSize="-1" DataControl="AppModuleDataControl" id="ViewProduccionIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ViewProduccionIterator" id="ViewProduccion" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="com.tnevada.model.bc.graficos.ViewProduccion" Name="ViewProduccion">
+        <AttrNames>
+          <Item Value="Cantidad"/>
+          <Item Value="Descripcion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

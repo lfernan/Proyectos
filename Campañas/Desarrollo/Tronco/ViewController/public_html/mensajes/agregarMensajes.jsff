@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGroupLayout valign="top" inlineStyle="margin-bottom:10px;" layout="horizontal" id="pgl7">
+        <af:panelGroupLayout id="pgl1">
+            <af:panelBox text="Datos" id="pb1" showDisclosure="true" rendered="#{pageFlowScope.datos != null}">
+                <f:facet name="toolbar"/>
+                <af:panelFormLayout maxColumns="1" id="pfl1">
+                    <af:iterator id="i1" var="row" value="#{pageFlowScope.datos}">
+                        <af:outputFormatted clientComponent="true" value="#{row}" id="of2"
+                                            inlineStyle="font-size:10pt;"/>
+                    </af:iterator>
+                </af:panelFormLayout>
+            </af:panelBox>
+            <af:panelBox text="Datos" showDisclosure="true" id="pb4" rendered="#{pageFlowScope.ns != null}">
+                <af:panelFormLayout id="pfl4" maxColumns="1" labelAlignment="start">
+                    <f:facet name="footer"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansNroDocumento}" label="Documento" id="it2"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"
+                                  wrap="soft" required="#{pageFlowScope.validarns}"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.documento}"/>
+                    <af:selectOneChoice value="#{pageFlowScope.ns.cansTipoDocumento}" label="Tipo Doc."
+                                        contentStyle="font-weight:bold; width:207px; height:1.5pc; font-size:0.9pc;"
+                                        id="soc6" unselectedLabel="Seleccionar..." required="#{pageFlowScope.validarns}"
+                                        binding="#{backingBeanScope.backing_agregarMensajes.tipoDoc}">
+                        <f:selectItems value="#{pageFlowScope.tipodoc}" id="si3"/>
+                    </af:selectOneChoice>
+                    <af:inputText value="#{pageFlowScope.ns.cansNombres}" label="Nombres" id="it4" wrap="soft"
+                                  dimensionsFrom="auto" required="#{pageFlowScope.validarns}"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.nombre}"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansApellidos}" label="Apellidos" id="it5" wrap="soft"
+                                  dimensionsFrom="auto" required="#{pageFlowScope.validarns}"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.apellido}"/>
+                    <af:selectOneChoice value="#{pageFlowScope.ns.cansSexo}" label="Sexo"
+                                        contentStyle="font-weight:bold; width:207px; height:1.5pc; font-size:0.9pc;"
+                                        id="soc5" unselectedLabel="Seleccionar..." required="#{pageFlowScope.validarns}"
+                                        binding="#{backingBeanScope.backing_agregarMensajes.sexo}">
+                        <f:selectItem itemValue="M" itemLabel="Masculino" id="si7"/>
+                        <f:selectItem itemValue="F" itemLabel="Femenino" id="si8"/>
+                    </af:selectOneChoice>
+                    <af:inputDate value="#{pageFlowScope.ns.cansFechaNacimiento}" label="Fecha Nacimiento"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"
+                                  converter="javax.faces.DateTime" id="id2" autoSubmit="true"
+                                  rendered="#{pageFlowScope.ns != null}" required="#{pageFlowScope.validarns}"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.nacimiento}">
+                        <af:validateDateTimeRange maximum="#{backingBeanScope.backing_agregarMensajes.maxFechaNacimiento}"
+                                                  messageDetailMaximum="Debe tener la mayor&#237;a de edad"/>
+                    </af:inputDate>
+                    <af:selectOneChoice value="#{pageFlowScope.ns.cansCondicionLaboral}" label="Condici&#243;n Laboral"
+                                        required="#{pageFlowScope.validarns}" showRequired="false"
+                                        contentStyle="font-weight:bold; width:207px; height:1.5pc; font-size:0.9pc;"
+                                        id="soc7" unselectedLabel="Seleccionar..."
+                                        binding="#{backingBeanScope.backing_agregarMensajes.condLaboral}">
+                        <f:selectItems value="#{pageFlowScope.condlaboral}" id="si6"/>
+                    </af:selectOneChoice>
+                    <af:selectOneChoice value="#{pageFlowScope.ns.cansEstadoCivil}" label="Estado Civil" id="it9"
+                                        unselectedLabel="Seleccionar..."
+                                        contentStyle="font-weight:bold; width:207px; height:1.5pc; font-size:0.9pc;">
+                        <f:selectItems value="#{pageFlowScope.estadocivil}" id="si5"/>
+                    </af:selectOneChoice>
+                    <af:inputText value="#{pageFlowScope.ns.cansEmail}" label="Email" id="it10"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;">
+                        <af:validateRegExp pattern="([a-zA-Z0-9.-_]+)\\s*(?:at|@|\(at\))\\s*(?:\\w+\\s*(?:do?t|\\.)\\s*)+(\\w+{1,3})" messageDetailNoMatch="Email incorrecto"/>
+                    </af:inputText>
+                    <af:inputText value="#{pageFlowScope.ns.cansNroTel1}" label="Tel&#233;fono 1" id="it11" wrap="soft"
+                                  dimensionsFrom="auto" required="#{pageFlowScope.validarns}"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.telefono1}"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansNroTel2}" label="Tel&#233;fono 2" id="it12" wrap="soft"
+                                  dimensionsFrom="auto"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansNroTel3}" label="Tel&#233;fono 3" id="it13" wrap="soft"
+                                  dimensionsFrom="auto"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansNroTel4}" label="Tel&#233;fono 4" id="it14" wrap="soft"
+                                  dimensionsFrom="auto"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansDomicilio}" label="Direcci&#243;n" id="it15" wrap="soft"
+                                  dimensionsFrom="auto"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"/>
+                    <af:inputText value="#{pageFlowScope.ns.cansProvincia}" label="Provincia" id="it16" wrap="soft"
+                                  dimensionsFrom="auto"
+                                  contentStyle="font-weight:bold; text-align:left; width:200px; height:1pc; font-size:0.9pc;"
+                                  partialTriggers="soc4"/>
+                    <af:selectOneChoice label="Sucursales" id="soc4" value="#{pageFlowScope.ns.cansSucursal}"
+                                        contentStyle="font-weight:bold; width:207px; height:1.5pc; font-size:0.9pc;"
+                                        autoSubmit="true" unselectedLabel="Seleccionar..."
+                                        required="#{pageFlowScope.validarns}"
+                                        valueChangeListener="#{backingBeanScope.backing_agregarMensajes.sucursalChangeListener}"
+                                        binding="#{backingBeanScope.backing_agregarMensajes.sucursal}">
+                        <f:selectItems value="#{pageFlowScope.sucursales}" id="si4"/>
+                    </af:selectOneChoice>
+                </af:panelFormLayout>
+                <f:facet name="toolbar"/>
+            </af:panelBox>
+            <af:panelBox text="Productos y Servicios" showDisclosure="true" rendered="#{pageFlowScope.datos != null}"
+                         id="pb3">
+                <f:facet name="toolbar"/>
+                <af:table var="row" rowBandingInterval="1" value="#{pageFlowScope.productos}"
+                          contentDelivery="immediate" emptyText="Sin Datos" summary="Sin Datos" columnStretching="last"
+                          id="t2" scrollPolicy="auto" autoHeightRows="0" styleClass="AFStretchWidth">
+                    <af:column sortable="false" headerText="Producto" width="140" id="c6">
+                        <af:outputText value="#{row.producto}"
+                                       inlineStyle="color:InfoText; font-weight:bold; font-size:x-small;" id="ot6"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Estado" id="c7" width="55">
+                        <af:outputText value="#{row.estado}"
+                                       inlineStyle="color:#{row.color}; font-weight:bold; font-size:x-small;" id="ot7"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Acci&#243;n" id="c8" width="45">
+                        <af:goLink text="#{row.accion}" destination="#{row.url}" targetFrame="_blank"
+                                   inlineStyle="font-weight:bold; font-size:x-small;" clientComponent="true"
+                                   styleClass="linkproducto" id="gl1"/>
+                    </af:column>
+                </af:table>
+            </af:panelBox>
+            <af:panelBox text="Gestiones" id="pb2" showDisclosure="true" rendered="#{pageFlowScope.gestiones != null}"
+                         partialTriggers="b1">
+                <f:facet name="toolbar"/>
+                <af:panelGroupLayout id="pgl4" inlineStyle="margin-top:5px;" layout="vertical">
+                    <af:iterator value="#{pageFlowScope.gestiones}" var="row" id="i2">
+                        <af:outputFormatted value="#{row}" id="of1" inlineStyle="font-size:small;"/>
+                    </af:iterator>
+                </af:panelGroupLayout>
+            </af:panelBox>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout id="pgl5" layout="vertical" halign="center" inlineStyle="margin-left:50px;" styleClass="AFStretchWidth">
+            <af:panelFormLayout id="pfl2" inlineStyle="margin-left:50px;" maxColumns="2" rows="6" styleClass="AFStretchWidth">
+                <f:facet name="footer"/>
+                <af:selectOneChoice label="Campa&#241;a:" id="soc1" unselectedLabel="Seleccionar..."
+                                    binding="#{backingBeanScope.backing_agregarMensajes.campania}"
+                                    valueChangeListener="#{backingBeanScope.backing_agregarMensajes.campaniaChangeListener}"
+                                    autoSubmit="true" requiredMessageDetail="Seleccione una campa&#241;a"
+                                    required="true" contentStyle="width:200px;">
+                    <f:selectItems value="#{backingBeanScope.backing_agregarMensajes.itemCampania}" id="si1"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Tipificaciones:" unselectedLabel="Seleccionar..." id="soc3"
+                                    binding="#{backingBeanScope.backing_agregarMensajes.tipificacion}"
+                                    requiredMessageDetail="Seleccione una tipificacion" required="true"
+                                    autoSubmit="true" partialTriggers="soc1" contentStyle="width:200px;"
+                                    valueChangeListener="#{backingBeanScope.backing_agregarMensajes.tipificacionChangeListener}">
+                    <f:selectItems value="#{backingBeanScope.backing_agregarMensajes.itemTipificacion}" id="si2"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Carga:" id="soc2" unselectedLabel="Seleccionar..."
+                                    binding="#{backingBeanScope.backing_agregarMensajes.carga}"
+                                    contentStyle="width:200px;"
+                                    valueChangeListener="#{backingBeanScope.backing_agregarMensajes.cargaChangeListener}"
+                                    autoSubmit="true" requiredMessageDetail="Seleccione una carga" required="true">
+                    <af:selectItem value="P" label="Predictivo" id="si13"/>
+                    <af:selectItem value="M" label="Manual" id="si14"/>
+                </af:selectOneChoice>
+                <af:inputText label="Mensaje:" id="it1" rows="6"
+                              binding="#{backingBeanScope.backing_agregarMensajes.mensaje}" dimensionsFrom="parent"/>
+                <af:selectBooleanCheckbox text="Incluir en la lista negra" id="sbc1"
+                                          visible="#{pageFlowScope.renderlista}"
+                                          binding="#{backingBeanScope.backing_agregarMensajes.checkBlack}"
+                                          partialTriggers="soc1"/>
+                <af:panelGroupLayout id="pgl9">
+                    <af:button text="Grabar" id="b1" inlineStyle="width:150px; text-align:center;"
+                               action="#{backingBeanScope.backing_agregarMensajes.grabar}" styleClass="AFStretchWidth"
+                               partialSubmit="false">
+                        <!--af:clientListener method="agenda" type="click"/-->
+                    </af:button>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout layout="horizontal" id="pgl3">
+                    <af:chooseDate id="cd1" inlineStyle="margin-left:10px;"
+                                   binding="#{backingBeanScope.backing_agregarMensajes.agenda}"/>
+                    <af:inputDate chooseId="cd1" id="id1" autoSubmit="true" visible="false" showRequired="false"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.fecha}">
+                        <af:validateDateTimeRange messageDetailMinimum="La fecha no puede ser menor a la de hoy"
+                                                  minimum="#{backingBeanScope.backing_agregarMensajes.maxFecha}"/>
+                    </af:inputDate>
+                </af:panelGroupLayout>
+            </af:panelFormLayout>
+            <af:spacer width="10" height="10" id="s1"/>
+            <af:panelGroupLayout id="pgl8" layout="horizontal" styleClass="AFStretchWidth" valign="top">
+                <af:pageTemplate viewId="/resources/responsive.jspx" id="pt1">
+                    <f:facet name="wide">
+                        <af:table var="row" rowBandingInterval="0" id="t1" columnStretching="last" scrollPolicy="page"
+                                  autoHeightRows="0" fetchSize="10" value="#{pageFlowScope.mensajes}"
+                                  partialTriggers="::b1" visible="#{pageFlowScope.mensajes ==null?false:true}"
+                                  width="800">
+                            <af:column sortable="false" headerText="Usuario" width="50" id="c3">
+                                <af:outputText value="#{row.usuario}" id="ot3"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="Legajo" id="c4" width="40">
+                                <af:outputText value="#{row.usuarioLegajo}" id="ot4"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="Fecha" id="c5" width="130">
+                                <af:outputText value="#{row.fechaFormateada}-#{row.horaDeCarga}" id="ot5"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="Fecha Compromiso" width="90" id="c10">
+                                <af:outputText value="#{row.fechaCompFormateada}" id="ot9"/>
+                            </af:column>
+                            <af:column noWrap="false" sortable="false" headerText="Tipificaci&#243;n" id="c2"
+                                       width="220">
+                                <af:outputText value="#{row.clasificacion}" id="ot2"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="Mensaje" id="c1" width="130">
+                                <af:outputText value="#{row.mensaje}" id="ot1"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="Producto" id="c9">
+                                <af:outputText value="#{row.producto}" id="ot8"/>
+                            </af:column>
+                        </af:table>
+                    </f:facet>
+                    <f:facet name="narrow">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center" styleClass="AFStretchWidth" inlineStyle="margin-left:50px;">
+                            <af:listView id="lv1" value="#{pageFlowScope.mensajes}" var="row" fetchSize="5" styleClass="AFStretchWidth">
+                                <f:facet name="groupHeaderStamp"/>
+                                <af:listItem id="li1" inlineStyle="background-color:Window;">
+                                    <af:panelGroupLayout id="pgl6" layout="horizontal">
+                                        <af:outputFormatted value="#{row.usuario}" id="of3"/>
+                                        <af:outputFormatted value="|" inlineStyle="color:Teal; font-size:large;"
+                                                            id="of12"/>
+                                        <af:outputFormatted value="#{row.usuarioLegajo}" id="of4"/>
+                                        <af:outputFormatted value="|"
+                                                            inlineStyle="color:Teal; font-weight:bold; font-size:large;"
+                                                            id="of5"/>
+                                        <af:outputFormatted value="#{row.mensaje}" id="of6"/>
+                                        <af:outputFormatted value="|"
+                                                            inlineStyle="color:Teal; font-weight:bold; font-size:large;"
+                                                            id="of7"/>
+                                        <af:outputFormatted value="#{row.fechaFormateada} #{row.horaDeCarga}"
+                                                            id="of13"/>
+                                        <af:outputFormatted value="|"
+                                                            inlineStyle="color:Teal; font-weight:bold; font-size:large;"
+                                                            id="of8"/>
+                                        <af:outputFormatted value="#{row.clasificacion}" id="of9"/>
+                                        <af:outputFormatted value="|"
+                                                            inlineStyle="color:Teal; font-weight:bold; font-size:large;"
+                                                            rendered="#{row.fechaCompFormateada eq '' ? false:true}"
+                                                            id="of10"/>
+                                        <af:outputFormatted value="#{row.fechaCompFormateada}" id="of14"/>
+                                        <af:outputFormatted value="|"
+                                                            inlineStyle="color:Teal; font-weight:bold; font-size:large;"
+                                                            id="of11"/>
+                                        <af:outputFormatted value="#{row.producto}" id="of15"/>
+                                    </af:panelGroupLayout>
+                                </af:listItem>
+                            </af:listView>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</jsp:root>

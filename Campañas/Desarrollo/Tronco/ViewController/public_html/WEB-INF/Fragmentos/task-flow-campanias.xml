@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="task-flow-campanias">
+    <default-activity>gestionarCampanias</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <view id="gestionarCampanias">
+      <page>/campanias/gestionarCampanias.jsff</page>
+    </view>
+    <task-flow-call id="segmentacion-popup">
+      <description>Segmentar</description>
+      <display-name>Segmentar</display-name>
+      <task-flow-reference>
+        <document>/WEB-INF/Fragmentos/segmentacion-popup.xml</document>
+        <id>segmentacion-popup</id>
+      </task-flow-reference>
+      <input-parameter id="__4">
+        <name>accion</name>
+        <value>#{pageFlowScope.accion}</value>
+        <pass-by-value/>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>gestionarCampanias</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>segmentar</from-outcome>
+        <to-activity-id>segmentacion-popup</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__3">
+        <from-outcome>consultar</from-outcome>
+        <to-activity-id>segmentacion-popup</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

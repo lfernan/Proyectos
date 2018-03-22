@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8"
+                id="historico_historico_ExecuteWithParamsPageDef" Package="Fragmentos.Graficos" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="ViewHistorico" RangeSize="25" DataControl="AppModuleDataControl" id="ViewHistoricoIterator"
+              Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="ViewHistoricoIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="prod" NDValue="#{pageFlowScope.prod}" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

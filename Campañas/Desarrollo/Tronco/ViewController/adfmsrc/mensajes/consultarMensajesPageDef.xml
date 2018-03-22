@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="consultarMensajesPageDef"
+                Package="mensajes">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CampaniasView1" RangeSize="25" DataControl="AppModuleDataControl" id="CampaniasView1Iterator"/>
+    <searchRegion Criteria="CampaniasViewCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CampaniasView1Iterator" id="CampaniasViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CampaniasView1Iterator" id="CampaniasView1">
+      <nodeDefinition DefName="com.tnevada.model.bc.CampaniasView" Name="CampaniasView10">
+        <AttrNames>
+          <Item Value="CampDescripcion"/>
+          <Item Value="CampFechaVigenciaDesde"/>
+          <Item Value="CampFechaVigenciaHasta"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

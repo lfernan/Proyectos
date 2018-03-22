@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="gestionarCampanias.acc">
+    <page>/campanias/gestionarCampanias.jspx</page>
+  </view>
+  <view id="consultarMensajes.acc">
+    <page>/mensajes/consultarMensajes.jspx</page>
+  </view>
+  <view id="agregarMensajes.acc">
+    <page>/mensajes/agregarMensajes.jspx</page>
+  </view>
+  <view id="dashboard.acc">
+    <page>/mensajes/panel.jspx</page>
+  </view>
+  <view id="agregarMensajesIT.acc">
+    <page>/mensajes/agregarMensajesIT.jspx</page>
+  </view>
+  <view id="gestionarSegmentacion.test">
+    <page>/segmentacion/gestionarSegmentacion.jspx</page>
+  </view>
+  <view id="consultarSegmentacion.test">
+    <page>/segmentacion/consultarSegmentacion.jspx</page>
+  </view>
+  <view id="generarPredictivo">
+    <page>/predictivo/predictivo.jspx</page>
+  </view>
+  <view id="test">
+    <page>/test.jspx</page>
+  </view>
+  <control-flow-rule id="__11">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__12">
+      <from-outcome>returnSegmentar</from-outcome>
+      <to-activity-id>gestionarCampanias.acc</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__1">
+    <managed-bean-name>backing_gestionarCampanias</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.campanias.GestionarCampanias</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <managed-property id="__13">
+      <property-name>session</property-name>
+      <property-class>com.tnevada.view.managed.SessionBean</property-class>
+      <value>#{SessionBean}</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__2">
+    <managed-bean-name>SessionBean</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.managed.SessionBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__3">
+    <managed-bean-name>ApplicationBean</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.managed.ApplicationBean</managed-bean-class>
+    <managed-bean-scope>application</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__4">
+    <managed-bean-name>backing_consultarMensajes</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.mensajes.ConsultarMensajes</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name>backing_agregarMensajes</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.mensajes.AgregarMensajes</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <managed-property id="__8">
+      <property-name>session</property-name>
+      <property-class>com.tnevada.view.managed.SessionBean</property-class>
+      <value>#{SessionBean}</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__6">
+    <managed-bean-name>backing_panel</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.mensajes.Panel</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__9">
+    <managed-bean-name>backing_gestionarSegmentacion</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.segmentacion.GestionarSegmentacion</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__10">
+    <managed-bean-name>backing_consultarSegmentacion</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.segmentacion.ConsultarSegmentacion</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__14">
+    <managed-bean-name>disabled_days</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.campanias.DisabledDays</managed-bean-class>
+    <managed-bean-scope>view</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__15">
+    <managed-bean-name>backing_predictivo</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.predictivo.Predictivo</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__16">
+    <managed-bean-name>backing_originacion</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.originacion.Originacion</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__7">
+    <managed-bean-name>Test</managed-bean-name>
+    <managed-bean-class>view.Test</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__17">
+    <managed-bean-name>backing_graficos</managed-bean-name>
+    <managed-bean-class>com.tnevada.view.backing.graficos.Graficos</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1graficos/graficos.jsf-->
+  </managed-bean>
+</adfc-config>

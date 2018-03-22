@@ -1,0 +1,338 @@
+.x51 {
+    padding-left: 0px !important
+}
+
+.x12v {
+    color: #003366;
+    font-family: verdana;
+    font-size: small;
+    font-weight: normal;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+.x12k {
+    font-family: verdana;
+    font-size: 15px;
+    font-weight: bold;
+}
+@font-face {
+    font-family: News Cycle;
+    src: url('../css/fonts/NewsCycle-Regular.eot');
+    src: local("News Cycle"), url('../css/fonts/NewsCycle-Regular.ttf');
+}
+
+.botonwest {
+    width: 60px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1 !important;
+    background-color: rgb(231, 231, 231);
+    background-image: url("../imagenes/tiempoGroso2.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: alpha(opacity=40);
+    /* internet explorer */
+
+    -khtml-opacity: 0.40;
+    /* khtml, old safari */
+
+    -moz-opacity: 0.40;
+    /* mozilla, netscape */
+
+    opacity: 0.40;
+    /* fx, safari, opera */
+}
+
+.contentoverlay {
+    margin: auto;
+    position: absolute;
+    z-index: 999999;
+    background-color: rgb(231, 231, 231);
+}
+
+.message {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1 !important;
+    background-color: rgba(0, 143, 255, 0.5);
+}
+
+.messageErr {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1 !important;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.messagepanel p {
+    vertical-align: middle;
+    text-align: center;
+    color: #222;
+    font-weight: bold;
+    font-size: medium;
+    margin: 2px;
+}
+
+.messagepanel {
+    left: auto;
+    margin-top: 30%;
+    width: auto;
+    padding: 10px;
+    /*border: solid 1px #8794A3;*/
+
+    background-color: #F9F9F9;
+    /*border-color: #C3D0DF;*/
+
+    color: #333;
+    /*border-style: solid;
+    border-width: 1px;*/
+}
+
+.datagrid table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+.datagrid {
+    font: normal 12px/150% Arial, Helvetica, sans-serif;
+    background: #fff;
+    overflow: hidden;
+    border: 1px solid #006699;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 90%;
+}
+
+.datagrid table td, .datagrid table th {
+    padding: 3px 10px;
+}
+
+.datagrid table thead th {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F));
+    background: -moz-linear-gradient(center top, #006699 5%, #00557F 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
+    background-color: #006699;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    border-left: 1px solid #0070A8;
+}
+
+.datagrid table thead th:first-child {
+    border: none;
+}
+
+.datagrid table tbody td {
+    color: #00557F;
+    border-left: 1px solid #E1EEF4;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.datagrid table tbody .alt td {
+    background: #E1EEf4;
+    color: #00557F;
+}
+
+.datagrid table tbody tr:hover {
+    background: #E1EEf4;
+    color: #00557F;
+}
+
+.datagrid table tbody td:first-child {
+    border-left: none;
+}
+
+.datagrid table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.datatablein.x1a tbody tr td {
+    border-left: none;
+}
+
+div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+    position: fixed !important;
+}
+
+.aprobada {
+    background-image: url("green.png");
+    background-repeat: repeat-x;
+    color: #fff;
+    font-weight: bold;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+}
+
+.rechazada {
+    background-image: url("red.png");
+    background-repeat: repeat-x;
+    color: #fff;
+    font-weight: bold;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+}
+
+.pendiente {
+    background-image: url("grey.png");
+    background-repeat: repeat-x;
+    color: Black;
+    font-weight: bold;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+}
+
+#dialog-overlay {
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    display: none;
+}
+
+#dialog-box {
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #eee;
+    width: 328px;
+    position: absolute;
+    z-index: 5000;
+    display: none;
+}
+
+#dialog-box .dialog-content {
+    text-align: left;
+    padding: 10px;
+    margin: 13px;
+    color: #666;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: sans-serif;
+}
+
+a.button {
+    margin: 10px auto 0 auto;
+    text-align: center;
+    background-color: #0091E3;
+    display: block;
+    width: 50px;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    position: relative;
+    cursor: pointer;
+}
+
+a.button:hover {
+    background-color: #c33100;
+}
+
+#dialog-box .dialog-content p {
+    font-weight: 700;
+    margin: 0;
+}
+
+#dialog-box .dialog-content ul {
+    margin: 10px 0 10px 20px;
+    padding: 0;
+    height: 50px;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-right: 10%;
+    left: auto;
+    font-weight: 700;
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+.alert-info .alert-link {
+    color: #245269;
+}
+
+.alert .alert-link {
+    font-weight: 700;
+    text-decoration: inherit;
+}
+
+.free-wall {
+    margin: 15px;
+}
+
+.cell {
+    font-weight: bold;
+    text-align: center;
+    font-size: larger;
+    padding: 5px;
+    color:White;
+}
+
+.cant {
+    font-size: 3pc;
+    margin-top: 20%;
+}

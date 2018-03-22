@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="panel.jspx" id="d1">
+            <af:form id="f1">
+                <af:panelStretchLayout id="psl3" dimensionsFrom="children" topHeight="0px"
+                                       inlineStyle="background-color:#F1F1F1;margin-top:5px;margin-bottom:5px;">
+                    <f:facet name="center">
+                        <af:panelGridLayout id="pgl1">
+                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+                                <af:gridCell marginStart="5px" width="100%" id="gc1">
+                                    <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                                        <f:facet name="center">
+                                            <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                                <af:selectOneChoice label="Tipo:" id="soc2"
+                                                                    unselectedLabel="Seleccionar..." autoSubmit="true"
+                                                                    binding="#{backingBeanScope.backing_panel.bindingTipo}"
+                                                                    contentStyle="width:170px"
+                                                                    requiredMessageDetail="Seleccione un tipo"
+                                                                    valueChangeListener="#{backingBeanScope.backing_panel.tipoChangeListener}"
+                                                                    labelStyle="font-weight: bold;" immediate="true">
+                                                    <f:selectItems value="#{backingBeanScope.backing_panel.itemTipo}"
+                                                                   id="si2"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice label="Producto:" unselectedLabel="Seleccionar..."
+                                                                    partialTriggers="soc2"
+                                                                    binding="#{backingBeanScope.backing_panel.bindingProducto}"
+                                                                    contentStyle="width:170px" id="soc4"
+                                                                    valueChangeListener="#{backingBeanScope.backing_panel.productoChangeListener}"
+                                                                    autoSubmit="true" inlineStyle="margin-left:10px;"
+                                                                    labelStyle="font-weight: bold;" immediate="true">
+                                                    <f:selectItems value="#{backingBeanScope.backing_panel.itemProductos}"
+                                                                   id="si4"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice label="Campa&#241;a:" id="soc1"
+                                                                    unselectedLabel="Seleccionar..."
+                                                                    contentStyle="width:170px;"
+                                                                    binding="#{backingBeanScope.backing_panel.bindingCampania}"
+                                                                    valueChangeListener="#{backingBeanScope.backing_panel.campaniaChangeListener}"
+                                                                    autoSubmit="true"
+                                                                    requiredMessageDetail="Seleccione una campa&#241;a"
+                                                                    inlineStyle="margin-right:5px; font-weight:bold;margin-left:10px;"
+                                                                    partialTriggers="soc4"
+                                                                    labelStyle="font-weight: bold;" immediate="true">
+                                                    <f:selectItems value="#{backingBeanScope.backing_panel.itemCampania}"
+                                                                   id="si1"/>
+                                                </af:selectOneChoice>
+                                                <af:selectManyChoice label="Graficos"
+                                                                     valueChangeListener="#{backingBeanScope.backing_panel.graficosChangeListener}"
+                                                                     id="smc1" autoSubmit="true"
+                                                                     binding="#{backingBeanScope.backing_panel.bindingGraficos}">
+                                                    <af:selectItem label="Historial" value="historico" id="si3"/>
+                                                    <af:selectItem label="Produci&#243;n" value="produccion" id="si5"/>
+                                                    <af:selectItem label="Tipificaciones" value="tipificacion"
+                                                                   id="si6"/>
+                                                    <af:selectItem label="Trabajado" value="trabajado" id="si7"/>
+                                                </af:selectManyChoice>
+                                                <af:link id="LinkGrid" icon="/imagenes/grid.png" partialSubmit="true"
+                                                         inlineStyle="margin-left:10px;margin-right:10px;"
+                                                         action="#{backingBeanScope.backing_panel.grid}"/>
+                                                <af:link id="LinkDeck" icon="/imagenes/deck.png" partialSubmit="true"
+                                                         inlineStyle="margin-left:10px;margin-right:10px;"
+                                                         action="#{backingBeanScope.backing_panel.deck}"/>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:gridCell>
+                            </af:gridRow>
+                        </af:panelGridLayout>
+                    </f:facet>
+                </af:panelStretchLayout>
+                <af:panelDashboard id="dashboard" dimensionsFrom="auto" columns="2" rowHeight="200px"
+                                   binding="#{backingBeanScope.backing_panel.grid}">
+                    <af:dataFlavor flavorClass="javax.faces.component.UIComponent" discriminant="fromDashboardSideBar"/>
+                    <af:panelBox id="activityCenter" text="Tipificaci&#243;n" showDisclosure="false"
+                                 showMaximize="always" rendered="#{pageFlowScope.tipificacion}">
+                        <f:facet name="toolbar"></f:facet>
+                        <af:componentDragSource discriminant="fromDashboardBody"/>
+                        <af:region value="#{bindings.tipificaciones1.regionModel}" id="r3"
+                                   partialTriggers="::LinkGrid ::poll"/>
+                    </af:panelBox>
+                    <af:panelBox text="Historico" showDisclosure="false" showMaximize="always" id="pb1"
+                                 rendered="#{pageFlowScope.historico}">
+                        <f:facet name="toolbar"></f:facet>
+                        <af:componentDragSource discriminant="fromDashboardBody"/>
+                        <af:region value="#{bindings.historico1.regionModel}" id="r1"
+                                   partialTriggers="::LinkGrid ::poll"/>
+                    </af:panelBox>
+                    <af:panelBox text="Produccion" showDisclosure="false" showMaximize="always"
+                                 rendered="#{pageFlowScope.produccion}">
+                        <f:facet name="toolbar"></f:facet>
+                        <af:componentDragSource discriminant="fromDashboardBody"/>
+                        <af:region value="#{bindings.produccion1.regionModel}" id="r2"
+                                   partialTriggers="::LinkGrid ::poll"/>
+                    </af:panelBox>
+                    <af:panelBox text="Trabajado" showDisclosure="false" showMaximize="always"
+                                 rendered="#{pageFlowScope.trabajado}">
+                        <f:facet name="toolbar"></f:facet>
+                        <af:componentDragSource discriminant="fromDashboardBody"/>
+                        <af:region value="#{bindings.trabajado1.regionModel}" id="r4"
+                                   partialTriggers="::LinkGrid ::poll"/>
+                    </af:panelBox>
+                </af:panelDashboard>
+                <af:poll id="poll" rendered="#{pageFlowScope.pollrender}" interval="1000"
+                         partialTriggers="LinkGrid LinkDeck"/>
+                <af:panelGroupLayout id="pgl3" layout="horizontal" halign="center"
+                                     binding="#{backingBeanScope.backing_panel.deck}" styleClass="AFStretchWidth">
+                    <af:panelBox text="PanelBox1" id="pb2" showMaximize="always">
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                                <af:group id="g1">
+                                    <af:link id="l1" rendered="#{pageFlowScope.historico}"
+                                             icon="#{pageFlowScope.graph eq 'h'?'/imagenes/page-dot-on.png':'/imagenes/page-dot-off.png'}"
+                                             partialSubmit="true" partialTriggers="l1 l2 l3 l4">
+                                        <af:setPropertyListener from="h" to="#{pageFlowScope.graph}" type="action"/>
+                                    </af:link>
+                                    <af:link id="l2" rendered="#{pageFlowScope.produccion}"
+                                             icon="#{pageFlowScope.graph eq 'p'?'/imagenes/page-dot-on.png':'/imagenes/page-dot-off.png'}"
+                                             partialSubmit="true" partialTriggers="l1 l2 l3 l4">
+                                        <af:setPropertyListener from="p" to="#{pageFlowScope.graph}" type="action"/>
+                                    </af:link>
+                                    <af:link id="l3" rendered="#{pageFlowScope.tipificacion}"
+                                             icon="#{pageFlowScope.graph eq 'c'?'/imagenes/page-dot-on.png':'/imagenes/page-dot-off.png'}"
+                                             partialSubmit="true" partialTriggers="l1 l2 l3 l4">
+                                        <af:setPropertyListener from="c" to="#{pageFlowScope.graph}" type="action"/>
+                                    </af:link>
+                                    <af:link id="l4" rendered="#{pageFlowScope.trabajado}"
+                                             icon="#{pageFlowScope.graph eq 't'?'/imagenes/page-dot-on.png':'/imagenes/page-dot-off.png'}"
+                                             partialSubmit="true" partialTriggers="l1 l2 l3 l4">
+                                        <af:setPropertyListener from="t" to="#{pageFlowScope.graph}" type="action"/>
+                                    </af:link>
+                                </af:group>
+                            </af:toolbar>
+                        </f:facet>
+                        <af:deck id="d2" displayedChild="#{pageFlowScope.graph}" styleClass="AFStretchWidth"
+                                 partialTriggers="l1 l2 l3 l4" dimensionsFrom="children" landmark="navigation">
+                            <af:transition triggerType="backNavigate" transition="fade"/>
+                            <af:transition triggerType="forwardNavigate" transition="fade"/>
+                            <af:region value="#{bindings.historico2.regionModel}" id="h"
+                                       partialTriggers="::LinkDeck ::poll" styleClass="AFStretchWidth"/>
+                            <af:region value="#{bindings.produccion2.regionModel}" id="p" styleClass="AFStretchWidth"
+                                       partialTriggers="::LinkDeck ::poll"/>
+                            <af:region value="#{bindings.tipificaciones2.regionModel}" id="c"
+                                       styleClass="AFStretchWidth" partialTriggers="::LinkDeck ::poll"/>
+                            <af:region value="#{bindings.trabajado2.regionModel}" id="t"
+                                       partialTriggers="::LinkDeck ::poll" styleClass="AFStretchWidth"/>
+                        </af:deck>
+                    </af:panelBox>
+                </af:panelGroupLayout>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

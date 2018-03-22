@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="Consultar Mensajes" id="pb1" inlineStyle="margin-top:10px; padding-bottom:5px;"
+                 showDisclosure="false">
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout id="pgl2" layout="vertical" halign="center">
+            <af:panelFormLayout id="pfl1" inlineStyle="margin-bottom:10px;">
+                <af:inputDate label="Fecha Desde:" id="id1"
+                              binding="#{backingBeanScope.backing_consultarMensajes.bindingFechaDesde}"
+                              partialTriggers="b2" required="true" requiredMessageDetail="Ingrese una fecha"
+                              showRequired="true"/>
+                <af:inputDate label="Fecha Hasta:" id="id2"
+                              binding="#{backingBeanScope.backing_consultarMensajes.bindingFechaHasta}"
+                              partialTriggers="b2" required="true" requiredMessageDetail="Ingrese una fecha"
+                              showRequired="true"/>
+                <af:selectOneChoice label="Tipo Origen:" id="soc1" unselectedLabel="Seleccionar" 
+                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingTipoOrigen}"
+                                    partialTriggers="b2" contentStyle="width:70%;">
+                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemTipoOrigen}" id="si1"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Clasificaci&#243;n" id="soc2" unselectedLabel="Seleccionar"
+                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingClasificacion}"
+                                    partialTriggers="b2" contentStyle="width:70%;">
+                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemClasificacion}" id="si2"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Tipo de Campa&#241;a:" id="soc4" autoSubmit="true" unselectedLabel="Seleccionar"
+                                    valueChangeListener="#{backingBeanScope.backing_consultarMensajes.tipoCampaniaChangeListener}" 
+                                    contentStyle="width:70%;" partialTriggers="b2"
+                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingTipoCampania}">
+                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemTipo}" id="si4"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Campa&#241;a:" id="soc3" unselectedLabel="Seleccionar"
+                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingCampania}"
+                                    partialTriggers="b2 soc4" requiredMessageDetail="Seleccione una campa&#241;a"
+                                    showRequired="true" contentStyle="width:70%;">
+                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemCampania}" id="si3"/>
+                </af:selectOneChoice>
+                <af:inputText label="Nro de documento:" id="it1"
+                              binding="#{backingBeanScope.backing_consultarMensajes.bindingDocumento}"
+                              partialTriggers="b2"/>
+                <f:facet name="footer">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="center">
+                        <af:button text="Buscar" id="b1" action="#{backingBeanScope.backing_consultarMensajes.buscar}"/>
+                        <af:button text="Limpiar" id="b2" immediate="true"
+                                   action="#{backingBeanScope.backing_consultarMensajes.limpiar}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelFormLayout>
+            <af:commandImageLink id="linkdownload" partialTriggers="::b1 ::b2" visible="#{sessionScope.icoexcel}"
+                                 icon="/imagenes/ei2.png">
+                <af:fileDownloadActionListener filename="BaseDeClientes.xls" contentType="application/vnd.ms-excel"
+                                               method="#{backingBeanScope.backing_consultarMensajes.download}"/>
+                <af:showPopupBehavior popupId="p1" align="afterEnd" triggerType="propertyChange"/>
+            </af:commandImageLink>
+            <af:popup id="p1">
+                <af:noteWindow id="nw1">                    
+                    <span>Descargar Excel.</span>                    
+                </af:noteWindow>
+            </af:popup>
+            <!--af:panelCollection id="pc1" featuresOff="viewMenu detach" styleClass="AFStretchWidth">
+                <f:facet name="menus"/>
+                <f:facet name="toolbar">
+                    <af:toolbar id="t2">
+                        <af:link id="l1" icon="/imagenes/ei2.png" partialTriggers="::b1 ::b2"
+                                 disabled="#{backingBeanScope.backing_consultarMensajes.bindingTabla.value == null ? true:false}"
+                                 disabledIcon="/imagenes/ei2-disabled.png">
+                            <af:exportCollectionActionListener type="excelHTML" exportedId="t1" filename="Mensajes.xls"
+                                                               title="Reporte"/>
+                        </af:link>
+                    </af:toolbar>
+                </f:facet>
+                <f:facet name="statusbar"/>
+                <af:table var="row" rowBandingInterval="0" id="t1"
+                          binding="#{backingBeanScope.backing_consultarMensajes.bindingTabla}"
+                          partialTriggers=":::b1 :::b2" rowSelection="single" scrollPolicy="page" autoHeightRows="0"
+                          columnStretching="multiple" styleClass="AFStretchWidth">
+                    <af:column sortable="false" headerText="Documento" id="c1" width="55">
+                        <af:outputText value="#{row.documento}" id="ot1"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Nombre" id="c2" width="160">
+                        <af:outputText value="#{row.nombre}" id="ot2"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Tipo Origen" id="c3" width="60">
+                        <af:outputText value="#{row.tipoOrigen}" id="ot3"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Tipo Campa&#241;a" width="60" id="c16">
+                        <af:outputText value="#{row.tipoCampania}" id="ot17"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Campa&#241;a" id="c4">
+                        <af:outputText value="#{row.campania}" id="ot4"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Importancia" id="c5" width="60">
+                        <af:outputText value="#{row.importancia}" id="ot5"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Usuario" id="c6" width="50">
+                        <af:outputText value="#{row.usuario}" id="ot6"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Legajo" id="c7" width="35">
+                        <af:outputText value="#{row.usuarioLegajo}" id="ot7"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Fecha" id="c8" width="50" sortStrength="Identical" sortProperty="fecha">
+                        <af:outputText value="#{row.fecha}" id="ot8"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Referencia" id="c9" width="50">
+                        <af:outputText value="#{row.referencia}" id="ot9"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Hora de Carga" id="c10" width="50">
+                        <af:outputText value="#{row.horaCarga}" id="ot10"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Sucursal" id="c11" width="150">
+                        <af:outputText value="#{row.localUsuario}" id="ot11"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Legajo Visitador" id="c12" width="40">
+                        <af:outputText value="#{row.visitadorLegajo}" id="ot12"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Nombre Visitador" id="c13" width="150">
+                        <af:outputText value="#{row.visitadorNombre}" id="ot13"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Clasificaci&#243;n" id="c14" width="180">
+                        <af:outputText value="#{row.clasificacion}" id="ot14"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Fecha Compromiso" id="c15" width="60">
+                        <af:outputText value="#{row.fechaCompromiso}" id="ot15"/>
+                    </af:column>
+                    <f:facet name="detailStamp">
+                        <af:panelGroupLayout id="pgl3" layout="scroll">
+                            <af:outputText value="#{row.mensaje}" id="ot16" inlineStyle="font-weight:bold;"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:table>
+            </af:panelCollection-->
+            <af:panelFormLayout id="pfl2" inlineStyle="margin-top:10px;">
+                <f:facet name="footer"/>
+            </af:panelFormLayout>
+        </af:panelGroupLayout>
+    </af:panelBox>
+</jsp:root>

@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">gestionarCampanias</property>
+      <property
+         name="page">/campanias/gestionarCampanias.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>gestionarCampanias&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">303.79883</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">398.03125</property>
+   </View>
+   <TaskFlowCall
+      id="TaskFlowCall3">
+      <property
+         name="taskFlowId">segmentacion-popup</property>
+      <property
+         name="activityId">segmentacion-popup</property>
+      <property
+         name="documentReference">/WEB-INF/Fragmentos/segmentacion-popup.xml</property>
+      <property
+         name="runAsDialog">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Segmentar&lt;/b>&lt;/p>&lt;p>Activity ID:  segmentacion-popup&lt;/p>&lt;p>Activity Type:  Task Flow Call&lt;/p>&lt;p/>&lt;p>&lt;em>Segmentar&lt;br/>&lt;/em>&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">299.79883</property>
+      <property
+         name="x">178.03906</property>
+   </TaskFlowCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="TaskFlowCall3">
+      <property
+         name="fromOutcome">segmentar</property>
+      <property
+         name="sdm:polyPoints">L46,357.03125,299.94824,219.14053,295.94824,R46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View2"
+      to="TaskFlowCall3">
+      <property
+         name="fromOutcome">consultar</property>
+      <property
+         name="sdm:polyPoints">L54,356.9298,306.94824,219.03906,302.94824,R54</property>
+   </ControlFlowCase>
+</SDM>

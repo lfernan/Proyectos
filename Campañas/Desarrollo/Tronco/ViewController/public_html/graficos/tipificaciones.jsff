@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <dvt:pieChart id="pieChart1" var="row" value="#{bindings.ViewTipificaciones.collectionModel}" threeDEffect="on"
+                hoverBehavior="dim">
+    <dvt:chartLegend id="cl1"/>
+    <dvt:pieDataItem id="di1" value="#{row.Cantidad}" label="#{row.Descripcion}"/>
+  </dvt:pieChart>
+</jsp:root>

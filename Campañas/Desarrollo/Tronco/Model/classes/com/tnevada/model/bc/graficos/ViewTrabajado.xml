@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ViewTrabajado"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  FetchMode="FETCH_AS_NEEDED"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.tnevada.model.bc.graficos.ViewTrabajado_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="camp"
+    Kind="where"
+    Type="java.lang.Long"/>
+  <SQLQuery><![CDATA[SELECT SUM (cantidad) AS cantidad, descripcion AS descripcion 
+    FROM ( (SELECT COUNT (1) AS cantidad, 'NO TRABAJADO' AS descripcion 
+              FROM campanias_base 
+             WHERE     base_camp_id = :camp 
+                   AND base_cans_id IS NULL 
+                   AND NOT EXISTS 
+                          (SELECT 1 
+                             FROM relacion_mensaje_campania 
+                            WHERE rel_me01_nro_doc = base_identificacion) 
+            UNION ALL 
+            SELECT COUNT (1), 'TRABAJADO' 
+              FROM relacion_mensaje_campania 
+             WHERE rel_camp_id = :camp 
+             AND NOT EXISTS (SELECT 1 FROM campanias WHERE camp_id = rel_camp_id AND camp_tipocamp_id = 5)) 
+          UNION ALL 
+          (SELECT COUNT (1) AS cantidad, 'NO TRABAJADO' AS descripcion 
+             FROM campanias_base, campanias_no_socios 
+            WHERE     base_camp_id = :camp 
+                  AND cans_id = base_cans_id 
+                  AND NOT EXISTS 
+                         (SELECT 1 
+                            FROM campanias_no_socios_mensajes 
+                           WHERE cansm_cans_id = cans_id) 
+           UNION ALL 
+           SELECT COUNT (1) AS cantidad, 'TRABAJADO' AS descripcion 
+             FROM campanias_base, campanias_no_socios 
+            WHERE     base_camp_id = :camp 
+                  AND cans_id = base_cans_id 
+                  AND EXISTS 
+                         (SELECT 1 
+                            FROM campanias_no_socios_mensajes 
+                           WHERE cansm_cans_id = cans_id))) 
+GROUP BY descripcion]]></SQLQuery>
+  <ViewAttribute
+    Name="Cantidad"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="CANTIDAD"
+    Expression="CANTIDAD"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Descripcion"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="12"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESCRIPCION"
+    Expression="DESCRIPCION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

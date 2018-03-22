@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:resource type="javascript" source="/resources/segmentacion/jquery.min.js"></af:resource>
+    <af:resource type="css" source="/resources/segmentacion/jquery.tokenize.css"></af:resource>
+    <af:resource type="javascript" source="/resources/segmentacion/jquery.tokenize.js"></af:resource>
+    <af:resource type="javascript" source="/resources/segmentacion/segmentacion.js"></af:resource>
+    <af:resource type="javascript" source="/resources/js/util.js"></af:resource>
+    <af:panelBox id="pb1" inlineStyle="margin:1%;" showDisclosure="false">
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout id="pgl1" layout="horizontal" valign="top">
+            <af:panelGroupLayout id="pgl4" halign="left">
+                <af:panelFormLayout id="pfl1">
+                    <f:facet name="footer"/>
+                    <af:selectManyListbox label="Sucursales" id="sml1"
+                                          binding="#{backingBeanScope.backing_gestionarSegmentacion.bindingSucursales}"
+                                          size="8"
+                                          valueChangeListener="#{backingBeanScope.backing_gestionarSegmentacion.filtroChangeListener}"
+                                          autoSubmit="true" partialTriggers="b2">
+                        <f:selectItems value="#{pageFlowScope.sucursales}" id="si2"/>
+                    </af:selectManyListbox>
+                    <af:inputText label="Cantidad de Clientes" id="it1" placeholder="#{pageFlowScope.NTP}"
+                                  partialTriggers="b2 sml1 it1 sor1 sor2 b3 irs1"
+                                  binding="#{backingBeanScope.backing_gestionarSegmentacion.bindingCantidad}">
+                        <af:validateRegExp pattern="[0-9]+" messageDetailNoMatch="Solo numeros positivos"/>
+                        <af:validateLongRange maximum="#{pageFlowScope.NTP}"
+                                              messageDetailMaximum="El tama&#241;o del segmento no debe ser mayor al tama&#241;o de la base"/>
+                        <af:validateLongRange minimum="1"
+                                              messageDetailMinimum="El segmento no puede ser cero o negativo"/>
+                    </af:inputText>
+                    <af:noteWindow id="nw1" autoDismissalTimeout="3" rendered="#{pageFlowScope.A gt 0}"
+                                   partialTriggers="b1 b2">
+                        <af:outputText value="Se incluir&#225;n #{pageFlowScope.A} agendados" id="ot2"
+                                       inlineStyle="font-weight:bold; color:Teal;"/>
+                    </af:noteWindow>
+                    <af:selectOneRadio label="Plan de Pago" id="sor1" partialTriggers="b2"
+                                       binding="#{backingBeanScope.backing_gestionarSegmentacion.bindingPlanPago}"
+                                       valueChangeListener="#{backingBeanScope.backing_gestionarSegmentacion.filtroChangeListener}"
+                                       autoSubmit="true" value="A">
+                        <af:selectItem value="S" id="si1" label="Si"/>
+                        <af:selectItem value="N" id="si3" label="No"/>
+                        <af:selectItem value="A" id="si4" label="Ambos"/>
+                    </af:selectOneRadio>
+                    <af:inputRangeSlider label="Rango de Edades" id="irs1" autoSubmit="true"
+                                         binding="#{backingBeanScope.backing_gestionarSegmentacion.bindingRangoEdades}"
+                                         valueChangeListener="#{backingBeanScope.backing_gestionarSegmentacion.filtroChangeListener}" maximum="100"
+                                         majorIncrement="10" partialTriggers="b2"/>
+                    <af:selectOneRadio label="Con Resumen" autoSubmit="true" value="A" id="sor2"
+                                       binding="#{backingBeanScope.backing_gestionarSegmentacion.bindingResumen}"
+                                       valueChangeListener="#{backingBeanScope.backing_gestionarSegmentacion.filtroChangeListener}"
+                                       partialTriggers="b2">
+                        <af:selectItem value="S" label="Si" id="si5"/>
+                        <af:selectItem value="N" label="No" id="si6"/>
+                        <af:selectItem value="A" label="Ambos" id="si7"/>
+                    </af:selectOneRadio>
+                </af:panelFormLayout>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl3" halign="right" valign="top" layout="scroll">
+                <af:panelFormLayout id="pfl2">
+                    <f:facet name="footer">
+                        <af:button text="Reciclar Campa&#241;a" id="b3" inlineStyle="margin:5%;"
+                                   action="#{backingBeanScope.backing_gestionarSegmentacion.reciclar}"
+                                   disabled="#{pageFlowScope.TP==0}" partialTriggers="sml1 sor1 b3 b1"/>
+                    </f:facet>
+                    <af:outputFormatted value="No Trabajados #{pageFlowScope.NT}" id="of1"
+                                        inlineStyle="margin-left:5px; font-weight:bold; font-size:larger; font-family:sans-serif;"
+                                        partialTriggers="b1 b2 b3 sor2"/>
+                    <af:outputFormatted value="No Trabajados Filtrado #{pageFlowScope.NTF}" id="of2"
+                                        inlineStyle="margin-left:5px; font-weight:bold; font-family:sans-serif;"
+                                        partialTriggers="b1 b2 sml1 sor1 sor2 b3 irs1"/>
+                    <af:outputFormatted value="Trabajados #{pageFlowScope.T}"
+                                        inlineStyle="margin-left:5px; font-weight:bold; font-family:sans-serif;"
+                                        partialTriggers="sml1 sor1 b3 b2 b1" id="of3"/>
+                </af:panelFormLayout>
+                <af:commandImageLink id="linkdownload" partialTriggers="b1 b2 p1 d1" visible="#{pageFlowScope.icoexcel}"
+                                     icon="/imagenes/ei2.png" inlineStyle="margin-right:50%;">
+                    <af:fileDownloadActionListener filename="Segmento.xlsx" contentType="application/vnd.ms-excel"
+                                                   method="#{backingBeanScope.backing_gestionarSegmentacion.downloadAction}"/>
+                </af:commandImageLink>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout layout="horizontal" halign="center" id="pgl2">
+            <af:button text="Segmentar" id="b1" disabled="#{pageFlowScope.NTP==0}"
+                       partialTriggers="sml1 sor1 b3 irs1 sor2" inlineStyle="width:85px; text-align:center;"
+                       action="#{backingBeanScope.backing_gestionarSegmentacion.generar}"/>
+            <af:button text="Limpiar" id="b2" immediate="true" inlineStyle="width:85px; text-align:center;"
+                       action="#{backingBeanScope.backing_gestionarSegmentacion.limpiar}"/>
+            <af:button text="Salir" id="b4" action="returnSegmentar" immediate="true"
+                       inlineStyle="width:85px; text-align:center;"/>
+        </af:panelGroupLayout>
+    </af:panelBox>
+    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+              binding="#{backingBeanScope.backing_gestionarSegmentacion.bindingPopUp}">
+        <af:dialog id="d1" dialogListener="#{backingBeanScope.backing_gestionarSegmentacion.dialogListener}">
+            <f:facet name="buttonBar"/>
+            <af:outputText value="#{pageFlowScope.mensaje}" id="ot1" inlineStyle="font-weight:bold;"/>
+        </af:dialog>
+    </af:popup>
+</jsp:root>

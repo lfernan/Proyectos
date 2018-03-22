@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:resource type="css" source="/css/campanias.12g.css"></af:resource>
+    <af:resource type="javascript" source="/resources/js/jquery-1.9.js"></af:resource>
+    <af:resource type="javascript" source="/resources/js/campanias.js"></af:resource>
+    <af:resource type="javascript">
+        var ancho=window.screen.availWidth;  
+        var alto=window.screen.availHeight; 
+        var anchoPop = 500;
+        var altoPop = 400;
+        
+        function abrirVentana(evt){                                                  
+            var clAyuda = evt.getSource();
+            var posY=0;
+            var posX=(ancho/2)-(anchoPop/2);                                     
+            var url = clAyuda.getProperty('hdnUrlAyuda') + '?param=' + clAyuda.getProperty('hdnIdPagina');
+            var ventana = (new Date().getMinutes()) + (new Date().getSeconds()); 
+            window.open(url, ventana,'width=500,height=400,toolbar=0, top='+ posY + ', left=' + posX + ', scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,directories=0');
+            return false;
+        }
+    </af:resource>
+    <af:popup id="pMsg">
+      <af:dialog title="#{pageFlowScope.gMsgTitulo}"
+                 id="dMsg" type="ok"
+                 titleIconSource="#{(pageFlowScope.gMsgTitulo == 'Error')? '../imagenes/cabecera/error.png' : '../imagenes/cabecera/info.png' }">
+        <af:outputText value="#{pageFlowScope.gMsg}"  id="otMensaje"/>
+      </af:dialog>
+    </af:popup>
+    <af:messages globalOnly="true" inline="true" id="m1"/>
+    <af:inlineFrame source="#{cabeceraBean.urlCabecera}" inlineStyle="height: 67px;" styleClass="AFStretchWidth"/>
+    <af:panelStretchLayout id="pt_psl1" startWidth="8px" endWidth="8px"
+                           dimensionsFrom="children">
+      <f:facet name="center">
+        <af:facetRef facetName="contenido"/>
+      </f:facet>
+      <f:facet name="start">
+        <af:spacer width="10" height="10" id="pt_s2"/>
+      </f:facet>
+      <f:facet name="end">
+        <af:spacer width="10" height="10" id="pt_s1"/>
+      </f:facet>
+    </af:panelStretchLayout>
+    
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>cabecera</display-name>
+        <facet>
+          <description>
+            Contenido de la PÃ¡gina
+          </description>
+          <facet-name>contenido</facet-name>
+        </facet>
+      </component>
+    </af:xmlContent>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9"/>
+  </af:pageTemplateDef>
+</jsp:root>

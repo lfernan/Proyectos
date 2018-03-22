@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">    
+    <af:resource type="javascript" source="/resources/js/jquery-1.9.js"></af:resource>
+    <af:resource type="javascript" source="/resources/js/freewall.js"></af:resource>
+    <af:resource type="javascript" source="/resources/bower_components/flot/jquery.flot.js"></af:resource>
+    <af:resource type="javascript" source="/resources/bower_components/flot/jquery.flot.pie.js"></af:resource>
+    <af:resource type="javascript" source="/resources/js/panel.js"></af:resource>
+    
+    <af:panelStretchLayout id="psl3" dimensionsFrom="children" topHeight="5px"
+                           inlineStyle="background-color:#F1F1F1;margin-top:5px;margin-bottom:5px;">
+            <f:facet name="center">
+                <af:panelGridLayout id="pgl1">
+                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+                        <af:gridCell marginStart="5px" width="100%" id="gc1">
+                            <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                                <f:facet name="center">
+                                <af:panelGroupLayout  layout="horizontal" id="pgl2">
+                                    <af:selectOneChoice label="Campa&#241;a:" id="soc1" unselectedLabel="Seleccionar..."
+                                                        contentStyle="width:150px;"
+                                                        binding="#{backingBeanScope.backing_panel.campania}"
+                                                        valueChangeListener="#{backingBeanScope.backing_panel.campaniaChangeListener}"
+                                                        autoSubmit="true"
+                                                        requiredMessageDetail="Seleccione una campa&#241;a"
+                                                        required="true"
+                                                        inlineStyle="margin-right:5px; font-weight:bold;">
+                                        <f:selectItems value="#{backingBeanScope.backing_panel.itemCampania}" id="si1"/>
+                                    </af:selectOneChoice>                                    
+                                    <af:commandLink id="cl2" action="#{backingBeanScope.backing_panel.datos}">
+                                        <af:image source="/imagenes/grid.png" id="i3"
+                                                  inlineStyle="margin-right:5px;margin-left:5px;"/>
+                                                  <af:setPropertyListener from="P" to="#{sessionScope.grafico}" type="action"/>
+                                    </af:commandLink>
+                                    <af:commandLink id="cl1" action="#{backingBeanScope.backing_panel.datos}">
+                                        <af:image source="/imagenes/pie_chart_bw.png" id="i2"
+                                                  inlineStyle="margin-right:5px;margin-left:5px;"/>
+                                        <af:setPropertyListener from="T" to="#{sessionScope.grafico}" type="action"/>
+                                    </af:commandLink>
+                                    <!--af:image source="/imagenes/bar_graph.png" id="i1" inlineStyle="margin-right:5px;margin-left:5px;"/-->
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            </af:panelStretchLayout>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>                
+            </f:facet>
+        </af:panelStretchLayout>
+    <af:poll id="p1" pollListener="#{backingBeanScope.backing_panel.poll}" rendered="#{sessionScope.pollrender}"
+             partialTriggers="cl2 cl1" interval="10000"/>
+</jsp:root>

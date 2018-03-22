@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'windows-1252'?>
+<weblogic-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.bea.com/ns/weblogic/weblogic-web-app http://www.bea.com/ns/weblogic/weblogic-web-app/1.0/weblogic-web-app.xsd"
+                  xmlns="http://www.bea.com/ns/weblogic/weblogic-web-app">
+    <session-descriptor>
+        <timeout-secs>1800</timeout-secs>
+        <invalidation-interval-secs>1800</invalidation-interval-secs>
+        <debug-enabled>true</debug-enabled>
+        <tracking-enabled>true</tracking-enabled>
+        <cookies-enabled>true</cookies-enabled>
+        <url-rewriting-enabled>true</url-rewriting-enabled>
+        <encode-session-id-in-query-params>false</encode-session-id-in-query-params>
+        <sharing-enabled>true</sharing-enabled>
+    </session-descriptor>
+    <container-descriptor>
+        <prefer-web-inf-classes>false</prefer-web-inf-classes>
+        <show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+    </container-descriptor>
+    <library-ref>
+        <library-name>adf.oracle.domain.webapp</library-name>
+    </library-ref>
+    <library-ref>
+        <library-name>jstl</library-name>
+        <specification-version>1.2</specification-version>
+    </library-ref>
+    <library-ref>
+        <library-name>jsf</library-name>
+        <specification-version>2.0</specification-version>
+    </library-ref>
+    <security-role-assignment>
+        <role-name>user</role-name>
+        <principal-name>EMPLEADOS</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+        <role-name>denegado</role-name>
+        <principal-name>denegado</principal-name>
+    </security-role-assignment>
+</weblogic-web-app>

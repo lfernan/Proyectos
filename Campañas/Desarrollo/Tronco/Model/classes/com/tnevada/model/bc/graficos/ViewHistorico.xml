@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ViewHistorico"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  FetchMode="FETCH_AS_NEEDED"
+  PageIterMode="Full"
+  ComponentClass="com.tnevada.model.bc.graficos.ViewHistoricoImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|Prog|VarAccess"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.tnevada.model.bc.graficos.ViewHistorico_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="prod"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT SUM (cantidad) as cantidad, mes AS mes, orden as orden 
+    FROM ( SELECT COUNT (t1.tipmen_id) AS cantidad, 
+                   TO_CHAR (t0.cansm_fecha, 'MONTH') AS mes, 
+                   TO_CHAR (t0.cansm_fecha, 'mm') AS orden 
+              FROM campanias_no_socios_mensajes t0, 
+                   tipificaciones_men t1, 
+                   tipificaciones_men_detalle t2, 
+                   campanias_base t3, 
+                   campanias_no_socios t4, 
+                   campanias t5 
+             WHERE   t5.camp_cartera = :prod   
+                   AND t1.tipmen_id = t2.tipdet_tipmen_id 
+                   AND t2.tipdet_id = t0.cansm_tipificacion 
+                   AND t3.base_camp_id = t5.camp_id 
+                   AND t4.cans_id = t3.base_cans_id 
+                   AND t0.cansm_cans_id = t4.cans_id 
+                   AND t0.cansm_tipificacion IN (96)             
+                   AND t5.camp_fecha_vigencia_desde >= trunc(add_months(sysdate,-12))                          
+          GROUP BY t0.cansm_fecha                     
+          UNION ALL 
+            SELECT COUNT (t6.clasificacion_id) AS cantidad, 
+                   TO_CHAR (TO_DATE (t6.fecha, 'yyyymmdd'), 'MONTH') AS mes, 
+                   TO_CHAR (TO_DATE (t6.fecha, 'yyyymmdd'), 'mm') AS orden 
+              FROM vw_consulta_mensajes_campanias t6, tipificaciones_men t7, campanias t8 
+             WHERE  t8.camp_cartera = :prod   
+                   AND t7.tipmen_id = t6.clasificacion_id 
+                   AND t6.camp_id = t8.camp_id 
+                   AND t6.clasificacion_id IN (13) 
+                   AND t8.camp_fecha_vigencia_desde >= trunc(add_months(sysdate,-12)) 
+          GROUP BY t6.fecha) 
+GROUP BY (mes,orden) 
+ORDER BY 3 ASC]]></SQLQuery>
+  <ViewAttribute
+    Name="Cantidad"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="CANTIDAD"
+    Expression="CANTIDAD"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Mes"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="75"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MES"
+    Expression="MES"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="75"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Orden"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="75"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ORDEN"
+    Expression="ORDEN"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="75"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

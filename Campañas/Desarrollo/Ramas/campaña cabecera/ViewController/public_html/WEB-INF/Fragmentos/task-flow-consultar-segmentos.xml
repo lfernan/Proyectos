@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="task-flow-consultar-segmentos">
+    <default-activity>consultarSegmentacion</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <view id="consultarSegmentacion">
+      <page>/segmentacion/consultarSegmentacion.jsff</page>
+    </view>
+    <parent-action id="parentAction">
+      <parent-outcome>returnSegmentar</parent-outcome>
+      <outcome>returnSegmentar</outcome>
+    </parent-action>
+    <control-flow-rule id="__1">
+      <from-activity-id>consultarSegmentacion</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>returnSegmentar</from-outcome>
+        <to-activity-id>parentAction</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

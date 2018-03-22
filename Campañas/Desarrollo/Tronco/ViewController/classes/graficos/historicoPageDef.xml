@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="historicoPageDef"
+                Package="graficos">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ViewHistorico" RangeSize="-1" DataControl="AppModuleDataControl" id="ViewHistoricoIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ViewHistoricoIterator" id="ViewHistorico" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="com.tnevada.model.bc.graficos.ViewHistorico" Name="ViewHistorico">
+        <AttrNames>
+          <Item Value="Cantidad"/>
+          <Item Value="Mes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

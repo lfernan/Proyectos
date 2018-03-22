@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="panelPageDef" Package="mensajes">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="taskflowpanel1" taskFlowId="/WEB-INF/Fragmentos/task-flow-panel.xml#task-flow-panel"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="historico1" taskFlowId="/WEB-INF/Fragmentos/Graficos/historico.xml#historico"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" RefreshCondition="#{pageFlowScope.historico1}"
+              active="#{pageFlowScope.historico1}">
+      <parameters>
+        <parameter id="prod" value="#{pageFlowScope.prod}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="tipificaciones1" taskFlowId="/WEB-INF/Fragmentos/Graficos/tipificaciones.xml#tipificaciones" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              RefreshCondition="#{pageFlowScope.tipificaciones1}" active="#{pageFlowScope.tipificaciones1}">
+      <parameters>
+        <parameter id="camp" value="#{pageFlowScope.camp}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="trabajado1" taskFlowId="/WEB-INF/Fragmentos/Graficos/trabajado.xml#trabajado"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" RefreshCondition="#{pageFlowScope.trabajado1}"
+              active="#{pageFlowScope.trabajado1}">
+      <parameters>
+        <parameter id="camp" value="#{pageFlowScope.camp}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="produccion1" taskFlowId="/WEB-INF/Fragmentos/Graficos/produccion.xml#produccion"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" RefreshCondition="#{pageFlowScope.produccion1}"
+              active="#{pageFlowScope.produccion1}">
+      <parameters>
+        <parameter id="camp" value="#{pageFlowScope.camp}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="historico2" taskFlowId="/WEB-INF/Fragmentos/Graficos/historico.xml#historico"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" RefreshCondition="#{pageFlowScope.historico2}"
+              active="#{pageFlowScope.historico2}">
+      <parameters>
+        <parameter id="prod" value="#{pageFlowScope.prod}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="produccion2" taskFlowId="/WEB-INF/Fragmentos/Graficos/produccion.xml#produccion"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" RefreshCondition="#{pageFlowScope.produccion2}"
+              active="#{pageFlowScope.produccion2}">
+      <parameters>
+        <parameter id="camp" value="#{pageFlowScope.camp}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="tipificaciones2" taskFlowId="/WEB-INF/Fragmentos/Graficos/tipificaciones.xml#tipificaciones" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              RefreshCondition="#{pageFlowScope.tipificaciones2}" active="#{pageFlowScope.tipificaciones2}">
+      <parameters>
+        <parameter id="camp" value="#{pageFlowScope.camp}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="trabajado2" taskFlowId="/WEB-INF/Fragmentos/Graficos/trabajado.xml#trabajado"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" RefreshCondition="#{pageFlowScope.trabajado2}"
+              active="#{pageFlowScope.trabajado2}">
+      <parameters>
+        <parameter id="camp" value="#{pageFlowScope.camp}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

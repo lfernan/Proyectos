@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="panelPageDef" Package="mensajes">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="taskflowpanel1" taskFlowId="/WEB-INF/Fragmentos/task-flow-panel.xml#task-flow-panel"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

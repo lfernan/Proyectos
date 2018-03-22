@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.tnevada.model.bc.AppModule">
+      <AppModuleConfig DeployPlatform="LOCAL" name="AppModuleLocal" ApplicationName="com.tnevada.model.bc.AppModule" jbo.project="model.Model">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.tnevada.model.bc.AppModule"/>
+         <Custom ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:JDBCDataSource="jdbc/nevadaCoreDS" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+      <AppModuleConfig jbo.project="model.Model" ApplicationName="com.tnevada.model.bc.AppModule" DeployPlatform="LOCAL" name="AppModuleShared">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.resetnontransactionalstate="false" jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.tnevada.model.bc.AppModule"/>
+         <Custom ns0:JDBCDataSource="jdbc/nevadaCoreDS" ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

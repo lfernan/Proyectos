@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelWindow id="pw1" closeIconVisible="false" inlineStyle="margin:1%;min-width:800px;min-height:600px">
+        <af:panelGroupLayout id="pgl5" layout="horizontal" styleClass="AFStretchWidth" valign="top"
+                             inlineStyle="margin-bottom:10px;">
+            <af:panelGroupLayout id="pgl8" inlineStyle="width:80%;" halign="left" layout="vertical" valign="top">
+                <af:panelBox text="Datos" id="pb1" showDisclosure="false" visible="#{pageFlowScope.datos != null}"
+                             inlineStyle="min-width:290px;">
+                    <f:facet name="toolbar"/>
+                    <af:panelFormLayout maxColumns="1" id="pfl1">
+                        <af:iterator id="i1" var="row" value="#{pageFlowScope.datos}">
+                            <af:outputFormatted clientComponent="true" value="#{row}" id="of2"
+                                                inlineStyle="font-size:10pt;"/>
+                        </af:iterator>
+                    </af:panelFormLayout>
+                </af:panelBox>
+                <af:panelBox text="Gestiones" id="pb2" showDisclosure="false"
+                             visible="#{pageFlowScope.gestiones != null}" partialTriggers="b1"
+                             inlineStyle="min-width:290px;">
+                    <f:facet name="toolbar"/>
+                    <af:panelGroupLayout id="pgl4" inlineStyle="margin-right:20px;margin-top:5px;" layout="vertical">
+                        <af:iterator value="#{pageFlowScope.gestiones}" var="row" id="i2">
+                            <af:outputFormatted value="#{row}" id="of1"/>
+                        </af:iterator>
+                    </af:panelGroupLayout>
+                </af:panelBox>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl7" halign="center" inlineStyle="margin-left:30px;">
+                <af:link text="Mensaje" id="l1" icon="/imagenes/message3.png"
+                         inlineStyle="color:InactiveCaptiontext; font-weight:bold; font-size:0.9pc;"/>
+                <af:separator id="s2"/>
+                <af:panelFormLayout id="pfl2" inlineStyle="margin-left:15%;" maxColumns="2" rows="5">
+                    <f:facet name="footer">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" valign="middle"
+                                             inlineStyle="margin-left:15%;margin-top:2%;">
+                            <af:button text="Grabar" id="b1"
+                                       action="#{backingBeanScope.backing_agregarMensajes.grabar}"/>
+                            <af:button text="Cancelar" id="b2"
+                                       action="#{backingBeanScope.backing_agregarMensajes.cancelar}"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <af:selectOneChoice label="Campa&#241;a:" id="soc1" unselectedLabel="Seleccionar..."
+                                        contentStyle="width:170px;"
+                                        binding="#{backingBeanScope.backing_agregarMensajes.campania}"
+                                        valueChangeListener="#{backingBeanScope.backing_agregarMensajes.campaniaChangeListener}"
+                                        autoSubmit="true" requiredMessageDetail="Seleccione una campa&#241;a"
+                                        required="true">
+                        <f:selectItems value="#{backingBeanScope.backing_agregarMensajes.itemCampania}" id="si1"/>
+                    </af:selectOneChoice>
+                    <af:selectOneChoice label="Tipificaciones:" unselectedLabel="Seleccionar..."
+                                        contentStyle="width:170px;" id="soc3"
+                                        binding="#{backingBeanScope.backing_agregarMensajes.tipificacion}"
+                                        requiredMessageDetail="Seleccione una tipificacion" required="true"
+                                        autoSubmit="true" partialTriggers="soc1"
+                                        valueChangeListener="#{backingBeanScope.backing_agregarMensajes.tipificacionChangeListener}">
+                        <f:selectItems value="#{backingBeanScope.backing_agregarMensajes.itemTipificacion}" id="si2"/>
+                    </af:selectOneChoice>
+                    <af:selectOneChoice label="Carga:" id="soc2" unselectedLabel="Seleccionar..."
+                                        contentStyle="width:170px;"
+                                        binding="#{backingBeanScope.backing_agregarMensajes.carga}"
+                                        valueChangeListener="#{backingBeanScope.backing_agregarMensajes.cargaChangeListener}"
+                                        autoSubmit="true" requiredMessageDetail="Seleccione una carga" required="true">
+                        <af:selectItem value="P" label="Predictivo" id="si13"/>
+                        <af:selectItem value="M" label="Manual" id="si14"/>
+                    </af:selectOneChoice>
+                    <af:inputText label="Mensaje:" id="it1" rows="6"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.mensaje}"
+                                  dimensionsFrom="parent"/>
+                    <af:selectBooleanCheckbox text="Incluir en la lista negra" id="sbc1"
+                                              visible="#{pageFlowScope.renderlista}"
+                                              binding="#{backingBeanScope.backing_agregarMensajes.checkBlack}"
+                                              partialTriggers="soc1"/>
+                    <af:chooseDate id="cd1" inlineStyle="margin-left:10%;"
+                                   binding="#{backingBeanScope.backing_agregarMensajes.agenda}"/>
+                    <af:inputDate chooseId="cd1" id="id1" autoSubmit="true"
+                                  binding="#{backingBeanScope.backing_agregarMensajes.fecha}" visible="false"/>
+                </af:panelFormLayout>
+                <af:table var="row" rowBandingInterval="0" id="t1" inlineStyle="margin-top:5px; position:relative;" columnStretching="last"
+                          scrollPolicy="page" autoHeightRows="0" fetchSize="10" width="700px;"
+                          value="#{pageFlowScope.mensajes}" partialTriggers="::b1"
+                          visible="#{pageFlowScope.mensajes ==null?false:true}">
+                    <af:column sortable="false" headerText="Usuario" id="c3" width="50">
+                        <af:outputText value="#{row.usuario}" id="ot3"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Legajo" id="c4" width="40">
+                        <af:outputText value="#{row.usuarioLegajo}" id="ot4"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Fecha" id="c5" width="130">
+                        <af:outputText value="#{row.fechaFormateada}-#{row.horaDeCarga}" id="ot5"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Tipificacion" id="c2" width="240">
+                        <af:outputText value="#{row.clasificacion}" id="ot2"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Mensaje" id="c1">
+                        <af:outputText value="#{row.mensaje}" id="ot1"/>
+                    </af:column>
+                </af:table>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+    </af:panelWindow>
+</jsp:root>

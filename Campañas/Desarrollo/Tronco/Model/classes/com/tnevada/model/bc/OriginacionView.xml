@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OriginacionView"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  FetchMode="FETCH_AS_NEEDED"
+  PageIterMode="Full"
+  RowClass="com.tnevada.model.bc.OriginacionViewRowImpl"
+  ComponentClass="com.tnevada.model.bc.OriginacionViewImpl"
+  Passivate="None">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.tnevada.model.bc.OriginacionView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="camp"
+    Kind="viewcriteria"
+    Type="java.lang.Long"/>
+  <SQLQuery><![CDATA[SELECT DISTINCT t3.base_camp_id AS ID_CAMP,   
+       t1.cans_nro_documento AS documento,        
+       t1.cans_apellidos AS apellido,        
+       t1.cans_nombres AS nombre,        
+       (SELECT pa06_des_tip        
+          FROM parp006m        
+         WHERE pa06_tip_doc = t1.cans_tipo_documento)        
+          AS tipo_documento,        
+       t1.cans_sexo AS sexo,        
+       t1.cans_fecha_nacimiento AS fecha_nacimiento,        
+       (SELECT par_descripcion        
+          FROM parametros        
+         WHERE     par_codigo = 'COD_LABORAL'        
+               AND par_valor = t1.cans_condicion_laboral)        
+          AS cond_laboral,        
+       t1.cans_provincia AS provincia,        
+       (SELECT suc_denominacion        
+          FROM sucursales        
+         WHERE suc_numero = t1.cans_sucursal)        
+          AS sucursal,        
+       t1.cans_nro_tel_1 AS telefono_1,        
+       t1.cans_nro_tel_2 AS telefono_2,        
+       t1.cans_nro_tel_3 AS telefono_3,        
+       t1.cans_nro_tel_4 AS telefono_4        
+  FROM campanias_no_socios t1,        
+       campanias_no_socios_mensajes t2,        
+       campanias_base t3        
+ WHERE     t1.cans_id = t2.cansm_cans_id        
+       AND t2.cansm_tipificacion = 96        
+       AND t1.cans_id = t3.base_cans_id]]></SQLQuery>
+  <ViewAttribute
+    Name="IdCamp"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Long"
+    ColumnType="LONGINT"
+    AliasName="ID_CAMP"
+    Expression="ID_CAMP"
+    SQLType="FLOAT"/>
+  <ViewAttribute
+    Name="Documento"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="13"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="DOCUMENTO"
+    Expression="DOCUMENTO"
+    SQLType="FLOAT"/>
+  <ViewAttribute
+    Name="Apellido"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="APELLIDO"
+    Expression="APELLIDO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Nombre"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NOMBRE"
+    Expression="NOMBRE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TipoDocumento"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="TIPO_DOCUMENTO"
+    Expression="TIPO_DOCUMENTO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sexo"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SEXO"
+    Expression="SEXO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FechaNacimiento"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    AliasName="FECHA_NACIMIENTO"
+    Expression="FECHA_NACIMIENTO"
+    SQLType="TIMESTAMP"/>
+  <ViewAttribute
+    Name="CondLaboral"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COND_LABORAL"
+    Expression="COND_LABORAL"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Provincia"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROVINCIA"
+    Expression="PROVINCIA"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sucursal"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUCURSAL"
+    Expression="SUCURSAL"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Telefono1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="TELEFONO_1"
+    Expression="TELEFONO_1"
+    SQLType="FLOAT"/>
+  <ViewAttribute
+    Name="Telefono2"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="TELEFONO_2"
+    Expression="TELEFONO_2"
+    SQLType="FLOAT"/>
+  <ViewAttribute
+    Name="Telefono3"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="TELEFONO_3"
+    Expression="TELEFONO_3"
+    SQLType="FLOAT"/>
+  <ViewAttribute
+    Name="Telefono4"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="TELEFONO_4"
+    Expression="TELEFONO_4"
+    SQLType="FLOAT"/>
+  <ViewCriteria
+    Name="OriginacionViewCriteria"
+    ViewObjectName="com.tnevada.model.bc.OriginacionView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="OriginacionViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="IdCamp"
+        ViewAttribute="IdCamp"
+        Operator="="
+        Conjunction="AND"
+        Value=":camp"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

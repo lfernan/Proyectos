@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-consultar-segmentos.xml" id="task-flow-consultar-segmentos" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-mensajes.xml" id="task-flow-mensajes" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="unspecified"/>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-panel.xml" id="task-flow-panel" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-agregar-mensajes.xml" id="task-flow-agregar-mensajes" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-campanias.xml" id="task-flow-campanias" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/segmentacion-popup.xml" id="segmentacion-popup" display-name="Segmentar" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp">
+      <input-parameter name="accion"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-gestionar-segmentacion.xml" id="task-flow-gestionar-segmentacion" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="META-INF/adfc-config.xml" id="" type="" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="WEB-INF/Fragmentos/task-flow-predictivo.xml" id="task-flow-predictivo" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp">
+      <input-parameter name="segmento"/>
+   </task-flow-descriptor>
+</task-flow-registry>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8"
+                id="task_flow_originacion_task_flow_originacion_ExecuteWithParamsPageDef" Package="Fragmentos"
+                SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="Originacion1" RangeSize="25" DataControl="AppModuleDataControl" id="Originacion1Iterator"
+              Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="Originacion1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="camp" NDValue="#{pageFlowScope.camp}" NDType="java.lang.Long"/>
+    </action>
+  </bindings>
+</pageDefinition>

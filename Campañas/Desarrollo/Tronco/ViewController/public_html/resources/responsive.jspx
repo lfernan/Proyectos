@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:pageTemplateDef var="attrs" definition="private">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description/>
+                <display-name>responsive</display-name>
+                <facet>
+                    <facet-name>wide</facet-name>
+                </facet>
+                <facet>
+                    <facet-name>narrow</facet-name>
+                </facet>
+            </component>
+        </af:xmlContent>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <af:resource type="css">
+            .wide {
+                display: inline;
+            }
+
+            .narrow {
+                display: none;
+            }
+@media screen and (max-width:1150px) {
+                .narrow {
+                    display: inline;
+                }
+                .wide {
+                    display: none;
+                }
+            }
+
+        </af:resource>
+        <af:panelGridLayout id="pt_pgl1">
+            <af:gridRow height="auto" id="pt_gr1">
+                <af:gridCell id="pt_gc1">
+                    <af:panelGroupLayout layout="vertical" styleClass="wide">
+                        <af:facetRef facetName="wide"/>
+                    </af:panelGroupLayout>
+                </af:gridCell>
+            </af:gridRow>
+            <af:gridRow height="auto" id="pt_gr2">
+                <af:gridCell  id="pt_gc2" width="auto">
+                    <af:panelGroupLayout layout="vertical" styleClass="narrow">
+                        <af:facetRef facetName="narrow"/>
+                    </af:panelGroupLayout>
+                </af:gridCell>
+            </af:gridRow>
+        </af:panelGridLayout>
+    </af:pageTemplateDef>
+</jsp:root>

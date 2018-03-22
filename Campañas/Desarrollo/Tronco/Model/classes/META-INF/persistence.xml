@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+  <persistence-unit name="Model">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <!--jta-data-source>java:/app/jdbc/jdbc/dnevadaDS</jta-data-source-->
+    <jta-data-source>jdbc/nevadaCoreDS</jta-data-source>
+    <class>com.tnevada.model.entidades.Campanias</class>
+    <class>com.tnevada.model.entidades.CampaniasBase</class>
+    <class>com.tnevada.model.entidades.TipoCampanias</class>
+    <class>com.tnevada.model.entidades.Menp004m</class>
+    <class>com.tnevada.model.entidades.Parametros</class>
+    <class>com.tnevada.model.entidades.TipificacionesMensajesCall</class>
+    <class>com.tnevada.model.entidades.TipificacionesMenDetalle</class>
+    <class>com.tnevada.model.entidades.RelacionTipificacionAcciones</class>
+    <class>com.tnevada.model.entidades.RelacionMensajeCampania</class>
+    <class>com.tnevada.model.entidades.ListaNegraTelefonos</class>
+    <class>com.tnevada.model.entidades.Sucursales</class>
+    <class>com.tnevada.model.entidades.CampaniasSegmentacion</class>
+    <class>com.tnevada.model.entidades.CampaniasSegmentacionBase</class>
+    <class>com.tnevada.model.entidades.Consulta</class>
+    <class>com.tnevada.model.entidades.TipoDeTelefono</class>
+    <class>com.tnevada.model.entidades.CampaniasNoSocios</class>
+    <class>com.tnevada.model.entidades.CampaniasNoSociosMensajes</class>
+    <class>com.tnevada.model.entidades.Parp008m</class>
+    <class>com.tnevada.model.entidades.Parp006m</class>
+    <class>com.tnevada.model.entidades.Parp001m</class>
+    <properties>
+      <property name="eclipselink.target-server" value="WebLogic_10"/>
+      <!--property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/dnevadaDS"/-->
+      <property name="javax.persistence.jtaDataSource" value="jdbc/nevadaCoreDS"/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="trabajadoPageDef"
+                Package="graficos">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ViewTrabajado" RangeSize="-1" DataControl="AppModuleDataControl" id="ViewTrabajadoIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ViewTrabajadoIterator" id="ViewTrabajado" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="com.tnevada.model.bc.graficos.ViewTrabajado" Name="ViewTrabajado">
+        <AttrNames>
+          <Item Value="Cantidad"/>
+          <Item Value="Descripcion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

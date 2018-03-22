@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="Gestionar Campa&#241;as" id="pb1" inlineStyle="margin-top:10px; padding-bottom:5px;"
+                 showDisclosure="false">
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout id="pgl2" layout="vertical" halign="center">
+            <af:panelFormLayout id="pfl1">
+                <f:facet name="footer">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="center">
+                        <af:button text="Buscar" id="b1"
+                                   action="#{backingBeanScope.backing_gestionarCampanias.buscar}"/>
+                        <af:button text="Limpiar" id="b2"
+                                   action="#{backingBeanScope.backing_gestionarCampanias.limpiar}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <af:inputText label="Descripcion:" id="it1" value="#{sessionScope.descripcion}" autoSubmit="true"
+                              partialTriggers="b2"/>
+                <af:selectOneChoice label="Tipo:" unselectedLabel="Todos" id="soc1" value="#{sessionScope.tipo}"
+                                    autoSubmit="true" partialTriggers="b2">
+                    <f:selectItems value="#{backingBeanScope.backing_gestionarCampanias.itemTipo}" id="si1"/>
+                </af:selectOneChoice>
+                <af:inputDate label="Fecha Desde:" id="id1" value="#{sessionScope.fdesde}" autoSubmit="true"
+                              partialTriggers="b2"/>
+                <af:inputDate label="Fecha Hasta:" id="id2" value="#{sessionScope.fhasta}" autoSubmit="true"
+                              partialTriggers="b2"/>
+            </af:panelFormLayout>
+            <af:panelFormLayout id="pfl2" inlineStyle="margin-top:10px;overflow:auto;">
+                <af:toolbar id="t2">
+                    <af:button text="Agregar" action="#{backingBeanScope.backing_gestionarCampanias.agregar}" id="b3"/>
+                    <af:button text="Modificar" action="#{backingBeanScope.backing_gestionarCampanias.modificar}"
+                               binding="#{backingBeanScope.backing_gestionarCampanias.bindingModificar}" id="b4"/>
+                    <af:button text="Eliminar" action="#{backingBeanScope.backing_gestionarCampanias.eliminar}"
+                               binding="#{backingBeanScope.backing_gestionarCampanias.bindingEliminar}" id="b5"/>
+                    <af:button text="Segmentar" id="b6"
+                               rendered="#{backingBeanScope.backing_gestionarCampanias.renderSegmentar}"
+                               action="#{backingBeanScope.backing_gestionarCampanias.segmentar}" useWindow="true"
+                               windowEmbedStyle="inlineDocument" windowHeight="#{pageFlowScope.height}"
+                               windowWidth="#{pageFlowScope.width}" immediate="true"
+                               windowModalityType="applicationModal"
+                               binding="#{backingBeanScope.backing_gestionarCampanias.bindingSegmentar}"
+                               returnListener="#{backingBeanScope.backing_gestionarCampanias.returnSegmentar}">
+                        <af:setPropertyListener from="#{sessionScope.campania}" to="#{pageFlowScope.campania}"
+                                                type="action"/>
+                        <af:setActionListener from="segmentar" to="#{pageFlowScope.accion}"/>
+                    </af:button>
+                </af:toolbar>
+                <af:table var="row" rows="25" emptyText="Sin datos para mostrar." rowBandingInterval="0"
+                          binding="#{backingBeanScope.backing_gestionarCampanias.bindingTabla}"
+                          selectionListener="#{backingBeanScope.backing_gestionarCampanias.tableSelectionListener}"
+                          rowSelection="single" id="t1" columnStretching="column:c1" width="955"
+                          partialTriggers=":::b1 ::b5" scrollPolicy="page" autoHeightRows="0" fetchSize="10">
+                    <af:column sortable="true" headerText="Campa&#241;a" id="c1" width="200">
+                        <af:outputText value="#{row.campDescripcion}" id="ot1"/>
+                    </af:column>
+                    <af:column sortable="true" headerText="Tipo" id="c2" width="80">
+                        <af:outputText value="#{row.tipoCampanias.tipocampDescripcion}" id="ot2"/>
+                    </af:column>
+                    <af:column sortable="true" headerText="Fecha Desde" id="c3" width="80">
+                        <af:outputText value="#{row.campFechaVigenciaDesde}" id="ot5"/>
+                    </af:column>
+                    <af:column sortable="true" headerText="Fecha Hasta" id="c4" width="80">
+                        <af:outputText value="#{row.campFechaVigenciaHasta}" id="ot6"/>
+                    </af:column>
+                    <af:column sortable="true" headerText="Fecha Carga" id="c5" width="80">
+                        <af:outputText value="#{row.campFechaAlta}" id="ot4"/>
+                    </af:column>
+                    <af:column sortable="true" headerText="Legajo Carga" width="40" id="c6">
+                        <af:outputText value="#{row.campLegajoUsuario}" id="ot3"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Base" id="c7" align="center">
+                        <af:commandLink text="Detalle" inlineStyle="font-style:italic;"
+                                        action="#{backingBeanScope.backing_gestionarCampanias.detalle}"
+                                        clientComponent="true" partialSubmit="true" id="cl2"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Segmentos" align="center" id="c8">
+                        <af:commandLink text="Consultar" inlineStyle="font-style:italic;" clientComponent="true"
+                                        partialSubmit="true" id="cl1" action="consultar" useWindow="true"
+                                        windowEmbedStyle="inlineDocument" windowHeight="500" windowWidth="800"
+                                        returnListener="#{backingBeanScope.backing_gestionarCampanias.returnSegmentar}">
+                            <af:setPropertyListener from="#{sessionScope.campania}" to="#{pageFlowScope.campania}"
+                                                    type="action"/>
+                            <af:setActionListener from="consultar" to="#{pageFlowScope.accion}"/>
+                        </af:commandLink>
+                    </af:column>
+                </af:table>
+                <f:facet name="footer"/>
+            </af:panelFormLayout>
+        </af:panelGroupLayout>
+    </af:panelBox>
+    <af:popup autoCancel="disabled" id="p1" binding="#{backingBeanScope.backing_gestionarCampanias.bindingPopUp}">
+        <af:panelWindow id="pw1" modal="true" binding="#{backingBeanScope.backing_gestionarCampanias.bindingPWPopUp}">
+            <f:facet name="buttonBar"/>
+            <!--af:messages globalOnly="true" inline="true" id="m2"/-->
+            <af:outputText value="Confirma la eliminaci&#243;n del registro?"
+                           inlineStyle="color: #B73232;font-weight: bold;"
+                           binding="#{backingBeanScope.backing_gestionarCampanias.bindingTextoDialog}"/>
+            <af:panelFormLayout id="pfl3" binding="#{backingBeanScope.backing_gestionarCampanias.bindingPanelForm}">
+                <af:inputText label="Descripci&#243;n:" id="it2" requiredMessageDetail="Ingrese una descripci&#243;n"
+                              required="true"
+                              binding="#{backingBeanScope.backing_gestionarCampanias.bindingDescripcion}"/>
+                <af:selectOneChoice label="Tipo:" id="soc2" unselectedLabel="Seleccionar..." autoSubmit="true"
+                                    binding="#{backingBeanScope.backing_gestionarCampanias.bindingTipo}"
+                                    contentStyle="width:170px" required="true"
+                                    requiredMessageDetail="Seleccione un tipo"
+                                    valueChangeListener="#{backingBeanScope.backing_gestionarCampanias.tipoChangeListener}">
+                    <f:selectItems value="#{backingBeanScope.backing_gestionarCampanias.itemTipo}" id="si2"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Rengl&#243;n de Campa&#241;a:" unselectedLabel="Seleccionar..."
+                                    partialTriggers="soc2"
+                                    binding="#{backingBeanScope.backing_gestionarCampanias.bindingRenglon}" id="soc3"
+                                    contentStyle="width:170px">
+                    <f:selectItems value="#{backingBeanScope.backing_gestionarCampanias.itemRenglones}" id="si3"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice label="Producto:" unselectedLabel="Seleccionar..." partialTriggers="soc2"
+                                    binding="#{backingBeanScope.backing_gestionarCampanias.bindingProducto}"
+                                    contentStyle="width:170px" id="soc4">
+                    <f:selectItems value="#{backingBeanScope.backing_gestionarCampanias.itemProductos}" id="si4"/>
+                </af:selectOneChoice>
+                <af:inputDate label="Fecha Desde:" id="id3" required="true"
+                              requiredMessageDetail="Seleccione una fecha desde"
+                              binding="#{backingBeanScope.backing_gestionarCampanias.bindingFechaDesde}"
+                              autoSubmit="true" 
+                              valueChangeListener="#{backingBeanScope.backing_gestionarCampanias.fechaDesdeChangeListener}">
+                    <!--af:validateDateTimeRange minimum="#{backingBeanScope.backing_gestionarCampanias.minFechaDesde}"
+                                              messageDetailMinimum="La fecha Desde"
+                                              messageDetailMaximum="La fecha Desde es mayor a la fecha Hasta"
+                                              maximum="#{backingBeanScope.backing_gestionarCampanias.maxFechaDesde}"/-->
+                </af:inputDate>
+                <af:inputDate label="Fecha Hasta:" id="id4" required="true"
+                              requiredMessageDetail="Seleccione una fecha hasta"
+                              binding="#{backingBeanScope.backing_gestionarCampanias.bindingFechaHasta}"
+                              partialTriggers="id3 soc2"
+                              valueChangeListener="#{backingBeanScope.backing_gestionarCampanias.fechaDesdeChangeListener}">
+                    <af:validateDateTimeRange minimum="#{backingBeanScope.backing_gestionarCampanias.minFechaHasta}"
+                                              messageDetailMinimum="La fecha Hasta no puede ser menor a la fecha Desde"
+                                              messageDetailMaximum="La fecha Hasta es mayor al periodo permitido"
+                                              maximum="#{backingBeanScope.backing_gestionarCampanias.maxFechaHasta}"/>
+                </af:inputDate>
+                <af:inputFile label="Base de Clientes:" id="if1" required="true" showRequired="true" editable="always"
+                              binding="#{backingBeanScope.backing_gestionarCampanias.bindingArchivos}"
+                              value="#{backingBeanScope.backing_gestionarCampanias.archivo}"/>
+            </af:panelFormLayout>
+            <af:panelGroupLayout layout="horizontal" halign="center" inlineStyle="margin-top:3%;" id="pgl4">
+                <af:button text="Procesar" action="#{backingBeanScope.backing_gestionarCampanias.abm}" id="b7"/>
+                <af:button text="Cancelar" immediate="true"
+                           action="#{backingBeanScope.backing_gestionarCampanias.cancelar}" id="b8"/>
+            </af:panelGroupLayout>
+            <!--af:message id="m1" for="id4" message="Mensaje" messageType="info"
+                        binding="#{backingBeanScope.backing_gestionarCampanias.bindingMensajePopUp}"/-->
+        </af:panelWindow>
+    </af:popup>
+    <af:popup autoCancel="disabled" id="p2" binding="#{backingBeanScope.backing_gestionarCampanias.bindingPopUpFiltro}"
+              eventContext="launcher" contentDelivery="lazyUncached" launcherVar="source">
+        <af:panelWindow modal="true" binding="#{backingBeanScope.backing_gestionarCampanias.bindingPWPopUpFiltro}">
+            <af:panelGroupLayout layout="horizontal" halign="center" id="pgl3">
+                <af:table var="row" rowBandingInterval="0" id="t3" autoHeightRows="0" scrollPolicy="page"
+                          verticalGridVisible="false" columnStretching="column:c9" width="500" rowSelection="single"
+                          selectionListener="#{backingBeanScope.backing_gestionarCampanias.tablaFiltroSelectionListener}"
+                          binding="#{backingBeanScope.backing_gestionarCampanias.bindingTablaFiltro}">
+                    <af:column sortable="false" headerText="Descripci&#243;n" id="c9" width="200">
+                        <af:outputText inlineStyle="font-weight: bold;" value="#{row.descripcion} - #{row.cantidad}"
+                                       id="ot8"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Incluir" width="70" id="c10" align="center">
+                        <af:selectBooleanCheckbox value="#{row.incluir}" autoSubmit="true" id="sbc1"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Descargar" id="c11" align="center" width="80">
+                        <af:commandImageLink icon="/imagenes/ei2.png" id="cil1">
+                            <af:fileDownloadActionListener filename="#{row.descripcion}.xlsx"
+                                                           contentType="application/vnd.ms-excel"
+                                                           method="#{backingBeanScope.backing_gestionarCampanias.downloadAction}"/>
+                        </af:commandImageLink>
+                    </af:column>
+                </af:table>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl5" layout="horizontal" halign="center" inlineStyle="margin-top:3%;">
+                <af:button text="Procesar" action="#{backingBeanScope.backing_gestionarCampanias.preFiltro}" id="b10"/>
+                <af:button text="Cancelar" action="#{backingBeanScope.backing_gestionarCampanias.cancelar}" id="b9"/>
+            </af:panelGroupLayout>
+        </af:panelWindow>
+    </af:popup>
+    <af:commandButton text="HiddenBtn" id="HiddenBtn" clientComponent="true" visible="false" partialSubmit="false">
+        <af:fileDownloadActionListener filename="BaseDeClientes.xlsx"
+                                       method="#{backingBeanScope.backing_gestionarCampanias.downloadAction}"
+                                       contentType="application/vnd.ms-excel"/>
+    </af:commandButton>
+    <af:commandLink id="linkactualizar" action="#{backingBeanScope.backing_gestionarCampanias.buscar}"/>
+</jsp:root>

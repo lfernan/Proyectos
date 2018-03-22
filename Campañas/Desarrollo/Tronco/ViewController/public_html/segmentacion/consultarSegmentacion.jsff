@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+    <af:panelBox id="pb1" showDisclosure="false" inlineStyle="margin:1%;">
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+            <af:panelFormLayout id="pfl1">
+                <f:facet name="footer">
+                    <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center"
+                                         inlineStyle="margin-top:10px;margin-bottom:10px;">
+                        <af:button text="Buscar" id="b1"
+                                   action="#{backingBeanScope.backing_consultarSegmentacion.buscar}"/>
+                        <af:button text="Limpiar" id="b2"
+                                   action="#{backingBeanScope.backing_consultarSegmentacion.limpiar}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <af:selectOneChoice label="Tipo de Campa&#241;a" id="soc1" unselectedLabel="Seleccionar..."
+                                    autoSubmit="true" contentStyle="width:150px;" partialTriggers="b2"
+                                    binding="#{backingBeanScope.backing_consultarSegmentacion.bindingTipoCampania}"
+                                    valueChangeListener="#{backingBeanScope.backing_consultarSegmentacion.tipoChangeListener}">
+                    <f:selectItems value="#{backingBeanScope.backing_consultarSegmentacion.itemTipo}" id="si1"/>
+                </af:selectOneChoice>
+                <af:inputDate label="Fecha de Campa&#241;a" id="id3"
+                              binding="#{backingBeanScope.backing_consultarSegmentacion.bindingFechaCampania}"/>
+                <af:selectOneChoice label="Campa&#241;a" id="soc2" unselectedLabel="Seleccionar..."
+                                    contentStyle="width:150px;" autoSubmit="true"
+                                    binding="#{backingBeanScope.backing_consultarSegmentacion.bindingCampania}"
+                                    partialTriggers="soc1 b2"
+                                    valueChangeListener="#{backingBeanScope.backing_consultarSegmentacion.campaniaChangeListener}">
+                    <f:selectItems value="#{backingBeanScope.backing_consultarSegmentacion.itemCampania}" id="si2"/>
+                </af:selectOneChoice>
+                <af:inputDate label="Fecha Desde" id="id1" autoSubmit="true"
+                              binding="#{backingBeanScope.backing_consultarSegmentacion.bindingDesde}"
+                              partialTriggers="b2"/>
+                <af:inputDate label="Fecha Hasta" id="id2" autoSubmit="true" partialTriggers="b2"
+                              binding="#{backingBeanScope.backing_consultarSegmentacion.bindingHasta}"/>
+            </af:panelFormLayout>
+            <af:panelFormLayout id="pfl2">
+                <f:facet name="footer">
+                    <af:button text="Salir" action="returnSegmentar" immediate="true" id="b3"
+                               inlineStyle="margin-left:90%; margin-top:5px; width:70px; text-align:center;"/>
+                </f:facet>
+                <af:table var="row" rowBandingInterval="0" id="t1" emptyText="Sin Datos" width="750"
+                          binding="#{backingBeanScope.backing_consultarSegmentacion.bindingTabla}"
+                          partialTriggers="::b1 ::b2" autoHeightRows="0" fetchSize="10" scrollPolicy="page"
+                          columnStretching="last" rowSelection="single"
+                          selectionListener="#{backingBeanScope.backing_consultarSegmentacion.tablaSelectionListener}"
+                          rowDisclosureListener="#{backingBeanScope.backing_consultarSegmentacion.disclosureListener}">
+                    <af:column sortable="false" headerText="Nombre del Segmento" id="c1" width="360">
+                        <af:outputText value="#{row.nombre}" id="ot1"/>
+                    </af:column>
+                    <af:column sortable="false" align="center" headerText="Fecha Carga" id="c2" width="80">
+                        <af:outputText value="#{row.fecha}" id="ot2"/>
+                    </af:column>
+                    <af:column sortable="false" align="center" headerText="Legajo Carga" id="c3" width="90">
+                        <af:outputText value="#{row.usuario}" id="ot3"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Base" align="center" id="c5" width="70">
+                        <af:commandLink text="Detalle" inlineStyle="font-style:italic;" id="cl1"
+                                        action="#{backingBeanScope.backing_consultarSegmentacion.detalle}"/>
+                    </af:column>
+                    <af:column sortable="false" headerText="Predictivo" align="center">
+                        <af:commandLink text="Predictivo" inlineStyle="font-style:italic;" action="#{backingBeanScope.backing_consultarSegmentacion.predictivo}"/>
+                    </af:column>
+                    <f:facet name="detailStamp">
+                        <af:panelBox text="Filtros Utilizados" showDisclosure="false"
+                                     visible="#{row.filtros != null}" inlineStyle="min-width:290px;"
+                                     partialTriggers="::t1">
+                            <f:facet name="toolbar"/>
+                            <af:panelFormLayout maxColumns="1">
+                                <af:iterator id="i1" var="row" value="#{row.filtrosFormateados}">
+                                    <af:outputFormatted clientComponent="true" value="#{row}" id="of2"
+                                                        inlineStyle="font-size:8pt;"/>
+                                </af:iterator>
+                            </af:panelFormLayout>
+                        </af:panelBox>
+                    </f:facet>
+                </af:table>
+            </af:panelFormLayout>
+            <f:facet name="separator"/>
+        </af:panelGroupLayout>
+    </af:panelBox>
+    <af:commandButton text="HiddenBtn" id="descargar" clientComponent="true" visible="false" partialSubmit="false">
+        <af:fileDownloadActionListener filename="#{pageFlowScope.segmentonombre}"
+                                       method="#{backingBeanScope.backing_consultarSegmentacion.downloadAction}"
+                                       contentType="#{pageFlowScope.contentType}"/>
+    </af:commandButton>
+</jsp:root>

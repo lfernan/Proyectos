@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.10.8" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/campanias/gestionarCampanias.jspx" usageId="view_gestionarCampaniasPageDef"/>
+    <page path="/mensajes/agregarMensajes.jspx" usageId="view_agregarMensajesPageDef"/>
+    <page path="/mensajes/consultarMensajes.jspx" usageId="view_consultarMensajesPageDef"/>
+    <page path="/mensajes/panel.jspx" usageId="view_panelPageDef"/>
+    <page path="/mensajes/agregarMensajesIT.jspx" usageId="view_agregarMensajesITPageDef"/>
+    <page path="/segmentacion/gestionarSegmentacion.jspx" usageId="view_gestionarSegmentacionPageDef"/>
+    <page path="/segmentacion/consultarSegmentacion.jspx" usageId="view_consultarSegmentacionPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_gestionarCampaniasPageDef" path="campanias.gestionarCampaniasPageDef"/>
+    <page id="view_agregarMensajesPageDef" path="mensajes.agregarMensajesPageDef"/>
+    <page id="view_consultarMensajesPageDef" path="mensajes.consultarMensajesPageDef"/>
+    <page id="view_panelPageDef" path="mensajes.panelPageDef"/>
+    <page id="view_agregarMensajesITPageDef" path="mensajes.agregarMensajesITPageDef"/>
+    <page id="view_gestionarSegmentacionPageDef" path="segmentacion.gestionarSegmentacionPageDef"/>
+    <page id="view_consultarSegmentacionPageDef" path="segmentacion.consultarSegmentacionPageDef"/>
+  </pageDefinitionUsages>
+</Application>

@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">gestionarSegmentacion</property>
+      <property
+         name="page">/segmentacion/gestionarSegmentacion.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>gestionarSegmentacion&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">175.44824</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">221.04102</property>
+   </View>
+   <ParentAction
+      id="ParentAction3">
+      <property
+         name="activityId">parentAction</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>parentAction&lt;/b>&lt;/p>&lt;p>Activity Type:  Parent Action&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">174.89648</property>
+      <property
+         name="x">474.0</property>
+   </ParentAction>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="ParentAction3">
+      <property
+         name="fromOutcome">returnSegmentar</property>
+      <property
+         name="sdm:polyPoints">R50,262.04102,175.09766,433.0,174.5459,L50</property>
+   </ControlFlowCase>
+</SDM>

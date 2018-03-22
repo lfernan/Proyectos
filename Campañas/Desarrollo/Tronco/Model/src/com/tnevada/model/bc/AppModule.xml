@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AppModule"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true">
+  <ViewUsage
+    Name="CampaniasView1"
+    ViewObjectName="com.tnevada.model.bc.CampaniasView"/>
+  <ViewUsage
+    Name="OriginacionView1"
+    ViewObjectName="com.tnevada.model.bc.OriginacionView"/>
+  <ViewUsage
+    Name="ViewProduccion"
+    ViewObjectName="com.tnevada.model.bc.graficos.ViewProduccion"/>
+  <ViewUsage
+    Name="ViewHistorico"
+    ViewObjectName="com.tnevada.model.bc.graficos.ViewHistorico"/>
+  <ViewUsage
+    Name="ViewTipificaciones"
+    ViewObjectName="com.tnevada.model.bc.graficos.ViewTipificaciones"/>
+  <ViewUsage
+    Name="ViewTrabajado"
+    ViewObjectName="com.tnevada.model.bc.graficos.ViewTrabajado"/>
+</AppModule>

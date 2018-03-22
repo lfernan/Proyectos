@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="consultarMensajes.jspx" id="d1">
+            <af:messages id="m2"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/cabecera/cabecera.jspx" id="pt1">
+                    <f:facet name="contenido">
+                        <af:panelBox id="pb1" inlineStyle="margin-top:10px; padding-bottom:5px;" showDisclosure="false">
+                            <f:facet name="toolbar"/>
+                            <af:panelGroupLayout id="pgl3" layout="horizontal" valign="middle" halign="center"
+                                                 styleClass="AFStretchWidth" inlineStyle="margin-top:1%;">
+                                <af:panelTabbed id="pt2" dimensionsFrom="auto">
+                                    <af:showDetailItem id="tab1" text="Consultar Mensajes" disclosed="true"
+                                                       immediate="true">
+                                        <af:panelGroupLayout id="pgl2" layout="vertical" halign="center">
+                                            <af:panelFormLayout id="pfl1" inlineStyle="margin-bottom:10px;" rows="8">
+                                                <af:inputDate label="Fecha Desde:" id="id1" disabled="true"
+                                                              partialTriggers="b2 id2 soc1 soc2 soc4 soc5 soc3 it1"
+                                                              binding="#{backingBeanScope.backing_consultarMensajes.bindingFechaDesde}"/>
+                                                <af:inputDate label="Fecha Hasta:" id="id2"
+                                                              binding="#{backingBeanScope.backing_consultarMensajes.bindingFechaHasta}"
+                                                              partialTriggers="b2" required="true"
+                                                              requiredMessageDetail="Ingrese una fecha"
+                                                              showRequired="true" autoSubmit="true"
+                                                              valueChangeListener="#{backingBeanScope.backing_consultarMensajes.filtrosChangeListener}">
+                                                    <!--af:showPopupBehavior popupId="info" triggerType="valueChange"
+                                                                          align="endAfter" alignId="id2"/-->
+                                                </af:inputDate>
+                                                <af:selectOneChoice label="Tipo Origen:" id="soc1"
+                                                                    unselectedLabel="Seleccionar"
+                                                                    valueChangeListener="#{backingBeanScope.backing_consultarMensajes.filtrosChangeListener}"
+                                                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingTipoOrigen}"
+                                                                    partialTriggers="b2" contentStyle="width:250px;"
+                                                                    autoSubmit="true">
+                                                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemTipoOrigen}"
+                                                                   id="si1"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice label="Tipificaci&#243;n" id="soc2"
+                                                                    unselectedLabel="Seleccionar"
+                                                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingClasificacion}"
+                                                                    partialTriggers="b2" contentStyle="width:250px;"
+                                                                    valueChangeListener="#{backingBeanScope.backing_consultarMensajes.filtrosChangeListener}"
+                                                                    autoSubmit="true">
+                                                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemClasificacion}"
+                                                                   id="si2"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice label="Tipo de Campa&#241;a:" id="soc4"
+                                                                    autoSubmit="true" unselectedLabel="Seleccionar"
+                                                                    valueChangeListener="#{backingBeanScope.backing_consultarMensajes.tipoCampaniaChangeListener}"
+                                                                    contentStyle="width:250px;" partialTriggers="b2"
+                                                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingTipoCampania}">
+                                                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemTipo}"
+                                                                   id="si4"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice label="Producto:" id="soc5"
+                                                                    unselectedLabel="Seleccionar"
+                                                                    valueChangeListener="#{backingBeanScope.backing_consultarMensajes.filtrosChangeListener}"
+                                                                    contentStyle="width:250px;" autoSubmit="true"
+                                                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingProducto}">
+                                                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemProductos}"
+                                                                   id="si5"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice label="Campa&#241;a:" id="soc3"
+                                                                    unselectedLabel="Seleccionar"
+                                                                    binding="#{backingBeanScope.backing_consultarMensajes.bindingCampania}"
+                                                                    partialTriggers="b2 soc4"
+                                                                    valueChangeListener="#{backingBeanScope.backing_consultarMensajes.filtrosChangeListener}"
+                                                                    contentStyle="width:250px;" autoSubmit="true">
+                                                    <f:selectItems value="#{backingBeanScope.backing_consultarMensajes.itemCampania}"
+                                                                   id="si3"/>
+                                                </af:selectOneChoice>
+                                                <af:inputText label="Nro de documento:" id="it1"
+                                                              valueChangeListener="#{backingBeanScope.backing_consultarMensajes.filtrosChangeListener}"
+                                                              binding="#{backingBeanScope.backing_consultarMensajes.bindingDocumento}"
+                                                              partialTriggers="b2" autoSubmit="true"/>
+                                                <f:facet name="footer">
+                                                    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="center">
+                                                        <af:button text="Buscar" id="b1"
+                                                                   action="#{backingBeanScope.backing_consultarMensajes.buscar}"/>
+                                                        <af:button text="Limpiar" id="b2" immediate="true"
+                                                                   action="#{backingBeanScope.backing_consultarMensajes.limpiar}"/>
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:panelFormLayout>
+                                            <af:commandImageLink id="linkdownload" partialTriggers="b1 b2"
+                                                                 visible="#{sessionScope.icoexcel}"
+                                                                 icon="/imagenes/ei2.png">
+                                                <af:fileDownloadActionListener filename="BaseDeClientes.xls"
+                                                                               contentType="application/vnd.ms-excel"
+                                                                               method="#{backingBeanScope.backing_consultarMensajes.download}"/>
+                                                <af:showPopupBehavior popupId="p1" align="afterEnd"
+                                                                      triggerType="propertyChange"/>
+                                            </af:commandImageLink>
+                                            <af:popup id="p1">
+                                                <af:noteWindow id="nw1">
+                                                    <span>Descargar Excel.</span>
+                                                </af:noteWindow>
+                                            </af:popup>
+                                            <af:panelFormLayout id="pfl2" inlineStyle="margin-top:10px;">
+                                                <f:facet name="footer"/>
+                                            </af:panelFormLayout>
+                                        </af:panelGroupLayout>
+                                        <!--af:popup childCreation="deferred" autoCancel="disabled" id="info">
+                                            <af:outputFormatted value="#{pageFlowScope.info}" id="of1"
+                                                                partialTriggers="id2"/>
+                                        </af:popup-->
+                                    </af:showDetailItem>
+                                    <af:showDetailItem id="tab2" text="Consultar Aprobados" immediate="true">
+                                        <af:panelGroupLayout id="pgl4" halign="center" layout="horizontal">
+                                            <af:panelGroupLayout layout="vertical" id="pgl5">
+                                                <af:panelFormLayout id="pfl3">
+                                                    <f:facet name="footer"/>
+                                                    <af:query id="qryId1" headerText="Search"
+                                                              value="#{bindings.CampaniasViewCriteriaQuery.queryDescriptor}"
+                                                              model="#{bindings.CampaniasViewCriteriaQuery.queryModel}"
+                                                              queryListener="#{bindings.CampaniasViewCriteriaQuery.processQuery}"
+                                                              queryOperationListener="#{bindings.CampaniasViewCriteriaQuery.processQueryOperation}"
+                                                              resultComponentId="::resId1" modeChangeVisible="false"
+                                                              displayMode="compact" saveQueryMode="hidden"
+                                                              modeButtonPosition="footer" resetButtonText="Limpiar"
+                                                              disclosed="true" saveResultsLayout="never"/>
+                                                    <af:table value="#{bindings.CampaniasView1.collectionModel}"
+                                                              var="row" rows="#{bindings.CampaniasView1.rangeSize}"
+                                                              emptyText="#{bindings.CampaniasView1.viewable ? 'Sin Registros.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.CampaniasView1.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.CampaniasView1.collectionModel.makeCurrent}"
+                                                              rowSelection="single" width="650"
+                                                              fetchSize="#{bindings.CampaniasView1.rangeSize}"
+                                                              id="resId1" scrollPolicy="page" autoHeightRows="0"
+                                                              columnStretching="last"
+                                                              inlineStyle="margin-top:3%;margin-left:6%;">
+                                                        <af:column sortProperty="#{bindings.CampaniasView1.hints.CampDescripcion.name}"
+                                                                   sortable="true" width="300"
+                                                                   headerText="#{bindings.CampaniasView1.hints.CampDescripcion.label}"
+                                                                   id="resId1c1">
+                                                            <af:outputText value="#{row.CampDescripcion}"
+                                                                           shortDesc="#{bindings.CampaniasView1.hints.CampDescripcion.tooltip}"
+                                                                           id="ot1"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.CampaniasView1.hints.CampFechaVigenciaDesde.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.CampaniasView1.hints.CampFechaVigenciaDesde.label}"
+                                                                   id="resId1c2">
+                                                            <af:outputText value="#{row.CampFechaVigenciaDesde}"
+                                                                           shortDesc="#{bindings.CampaniasView1.hints.CampFechaVigenciaDesde.tooltip}"
+                                                                           id="ot2">
+                                                                <af:convertDateTime pattern="#{bindings.CampaniasView1.hints.CampFechaVigenciaDesde.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.CampaniasView1.hints.CampFechaVigenciaHasta.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.CampaniasView1.hints.CampFechaVigenciaHasta.label}"
+                                                                   id="resId1c3">
+                                                            <af:outputText value="#{row.CampFechaVigenciaHasta}"
+                                                                           shortDesc="#{bindings.CampaniasView1.hints.CampFechaVigenciaHasta.tooltip}"
+                                                                           id="ot3">
+                                                                <af:convertDateTime pattern="#{bindings.CampaniasView1.hints.CampFechaVigenciaHasta.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column headerText="Base Originaci&#243;n" id="c5"
+                                                                   align="center">
+                                                            <af:button text="Descargar" id="b3">
+                                                                <af:clientListener method="handleEnterEvent"
+                                                                                   type="click"/>
+                                                                <af:serverListener type="EnterEvent"
+                                                                                   method="#{backingBeanScope.backing_consultarMensajes.handleEnterEvent}"/>
+                                                                <af:fileDownloadActionListener method="#{backingBeanScope.backing_consultarMensajes.download}"
+                                                                                               filename="Originacion_#{row.CampDescripcion}.xls"/>
+                                                            </af:button>
+                                                        </af:column>
+                                                    </af:table>
+                                                </af:panelFormLayout>
+                                            </af:panelGroupLayout>
+                                        </af:panelGroupLayout>
+                                    </af:showDetailItem>
+                                </af:panelTabbed>
+                            </af:panelGroupLayout>
+                        </af:panelBox>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

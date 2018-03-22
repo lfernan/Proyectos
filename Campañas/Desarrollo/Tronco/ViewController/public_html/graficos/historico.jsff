@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <dvt:lineChart id="lineChart1" var="row" value="#{bindings.ViewHistorico.collectionModel}">
+    <dvt:chartValueFormat id="cvf1" type="y"/>
+    <dvt:chartLegend id="cl1"/>
+    <f:facet name="dataStamp">
+      <dvt:chartDataItem id="di1" value="#{row.Cantidad}" group="#{row.Mes}"
+                         series="#{bindings.ViewHistorico.hints.Cantidad.label}"/>
+    </f:facet>
+  </dvt:lineChart>
+</jsp:root>

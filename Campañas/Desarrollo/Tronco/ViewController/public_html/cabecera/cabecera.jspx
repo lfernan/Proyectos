@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:resource type="css" source="/css/campanias.12g.css"></af:resource>
+    <af:resource type="javascript" source="/resources/js/jquery-1.9.js"></af:resource>
+    <af:resource type="javascript" source="/resources/js/campanias.js"></af:resource>
+    <af:resource type="javascript">
+        var ancho=window.screen.availWidth;  
+        var alto=window.screen.availHeight; 
+        var anchoPop = 500;
+        var altoPop = 400;
+        
+        function abrirVentana(evt){                                                  
+            var clAyuda = evt.getSource();
+            var posY=0;
+            var posX=(ancho/2)-(anchoPop/2);                                     
+            var url = clAyuda.getProperty('hdnUrlAyuda') + '?param=' + clAyuda.getProperty('hdnIdPagina');
+            var ventana = (new Date().getMinutes()) + (new Date().getSeconds()); 
+            window.open(url, ventana,'width=500,height=400,toolbar=0, top='+ posY + ', left=' + posX + ', scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,directories=0');
+            return false;
+        }
+    </af:resource>
+    <af:popup id="pMsg">
+      <af:dialog title="#{pageFlowScope.gMsgTitulo}"
+                 id="dMsg" type="ok"
+                 titleIconSource="#{(pageFlowScope.gMsgTitulo == 'Error')? '../imagenes/cabecera/error.png' : '../imagenes/cabecera/info.png' }">
+        <af:outputText value="#{pageFlowScope.gMsg}"  id="otMensaje"/>
+      </af:dialog>
+    </af:popup>
+    <af:messages globalOnly="true" inline="true" id="m1"/>
+    <af:panelStretchLayout id="pt_psl2" dimensionsFrom="children">
+      <f:facet name="center">
+        <af:panelGridLayout id="pt_pgl7">
+          <af:gridRow height="auto" id="pt_gr2">
+            <af:gridCell width="33%" id="pt_gc2">
+              <af:panelGroupLayout id="pt_pgl1" layout="horizontal" styleClass="AFStretchWidth">
+                <af:image source="/imagenes/cabecera/new.png" id="pt_i3" inlineStyle="margin-right:5px;"/>
+                <af:panelGroupLayout id="pt_pgl6" layout="vertical" styleClass="AFStretchWidth">
+                  <af:outputFormatted value="&lt;b>#{SessionBean.fecha}&lt;/b>" id="pt_of1"/>
+                  <af:outputFormatted value="Usuario:&lt;b>#{SessionBean.usuario}&lt;/b>" id="pt_of2"/>
+                  <af:outputFormatted value="Version:&lt;b>#{ApplicationBean.APP_VERSION}&lt;/b>" id="pt_of3"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+            </af:gridCell>
+            <af:gridCell width="34%" id="pt_gc3" halign="center">
+              <af:panelGroupLayout id="pt_pgl5" layout="horizontal" halign="center">
+                <af:image source="/imagenes/cabecera/header_logo.png" id="pt_i2" inlineStyle="width:200px;"/>
+              </af:panelGroupLayout>
+            </af:gridCell>
+            <af:gridCell width="33%" id="pt_gc4">
+              <af:panelGroupLayout id="panelGroupLayout12" halign="right" valign="bottom" layout="horizontal"
+                                   inlineStyle="height:46px; vertical-align:inherit;" rendered="true">
+                <af:commandLink id="clAyuda" shortDesc="Ayuda" inlineStyle="background-repeat:no-repeat;">
+                  <af:clientAttribute name="hdnIdPagina" value="#{requestScope.idPagina}"/>
+                  <af:clientAttribute name="hdnUrlAyuda" value="#{ApplicationBean.urlServicioAyuda}"/>
+                  <af:clientListener method="abrirVentana" type="action"/>
+                  <af:image source="/imagenes/cabecera/help.png" id="pt_i1"/>
+                </af:commandLink>
+                <af:outputText value="#{requestScope.idPagina}" id="outputText19"
+                               inlineStyle="color:rgb(212,208,200); font-size:8pt; font-weight:bold;"/>
+                <af:image source="/imagenes/cabecera/new.png" id="pt_i4" inlineStyle="margin-left:5px;"/>
+              </af:panelGroupLayout>
+            </af:gridCell>
+          </af:gridRow>
+        </af:panelGridLayout>
+      </f:facet>
+    </af:panelStretchLayout>
+    <af:panelStretchLayout id="pt_psl1" startWidth="8px" endWidth="8px"
+                           dimensionsFrom="children">
+      <f:facet name="center">
+        <af:facetRef facetName="contenido"/>
+      </f:facet>
+      <f:facet name="start">
+        <af:spacer width="10" height="10" id="pt_s2"/>
+      </f:facet>
+      <f:facet name="end">
+        <af:spacer width="10" height="10" id="pt_s1"/>
+      </f:facet>
+    </af:panelStretchLayout>
+    
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>cabecera</display-name>
+        <facet>
+          <description>
+            Contenido de la PÃ¡gina
+          </description>
+          <facet-name>contenido</facet-name>
+        </facet>
+      </component>
+    </af:xmlContent>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9"/>
+  </af:pageTemplateDef>
+</jsp:root>

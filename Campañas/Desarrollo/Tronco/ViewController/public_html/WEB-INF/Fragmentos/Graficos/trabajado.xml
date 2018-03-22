@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="trabajado">
+    <default-activity>ExecuteWithParams</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__5">
+      <name>camp</name>
+      <value>#{pageFlowScope.camp}</value>
+      <class>java.lang.Long</class>
+    </input-parameter-definition>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="__trabajado1">
+      <page>/graficos/trabajado.jsff</page>
+    </view>
+    <task-flow-return id="return">
+      <outcome>
+        <name>return</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__1">
+      <from-activity-id>__trabajado1</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>volver</from-outcome>
+        <to-activity-id>return</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>__trabajado1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

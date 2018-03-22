@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8"
+                id="produccion_produccion_ExecuteWithParamsPageDef" Package="Fragmentos.Graficos" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="ViewProduccion" RangeSize="25" DataControl="AppModuleDataControl" id="ViewProduccionIterator"
+              Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="ViewProduccionIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="camp" NDValue="#{pageFlowScope.camp}" NDType="java.lang.Long"/>
+    </action>
+  </bindings>
+</pageDefinition>

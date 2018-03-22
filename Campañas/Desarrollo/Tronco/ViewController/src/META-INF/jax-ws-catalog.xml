@@ -1,0 +1,8 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <system systemId="http://MensajesPortProd"
+            uri="http://apps.tarjetanevada.com.ar/consultasnevada/MensajesWSSoap12HttpPort?WSDL"/>
+    <system systemId="http://MensajesPortDesa"
+            uri="http://appsoasdesa.tarjetanevada.com.ar/consultasnevada/MensajesWSSoap12HttpPort?WSDL"/>
+    <system systemId="http://MensajesPortClon04"
+            uri="http://appsoasdesa.tarjetanevada.com.ar/consultasnevadaclon04/MensajesWSSoap12HttpPort?WSDL"/>
+</catalog>
